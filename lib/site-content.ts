@@ -251,7 +251,7 @@ const truckMainNames = [
 
 export const siteConfig = {
   businessName: "Compact Car Hire Newark",
-  companyTagline: "Practical self-drive hire across Newark and beyond",
+  companyTagline: "Practical self-drive hire across Newark and nearby Nottinghamshire and Lincolnshire routes",
   legalBusinessName: "Compact Car Hire Newark",
   locationName: "Newark",
   siteUrl: "https://compactcarhirenewark.co.uk",
@@ -388,803 +388,740 @@ function createContentSet(args: {
   }
 }
 
+function createCompactMainVehicleTexts(location: string): VehicleText[] {
+  return [
+    {
+      body: `The Fiat 500 is ideal for short ${location} trips where easy parking, simple handling and a small footprint matter most.`,
+      alt: `Fiat 500 compact hire car for easy local driving in ${location}`,
+    },
+    {
+      body: `The Hyundai i10 Auto suits drivers who want relaxed automatic driving for errands, station collections and everyday travel around ${location}.`,
+      alt: `Hyundai i10 automatic compact hire car in ${location}`,
+    },
+    {
+      body: `The VW Golf adds extra comfort and luggage space while keeping the practical feel that works well for mixed local and regional mileage from ${location}.`,
+      alt: `Volkswagen Golf hatchback available for hire in ${location}`,
+    },
+    {
+      body: `The Focus Auto is a useful all-rounder when your ${location} journey mixes town driving with longer runs on faster roads.`,
+      alt: `Ford Focus automatic available for self-drive hire in ${location}`,
+    },
+  ]
+}
+
+function createCompactAdditionalVehicleTexts(location: string): VehicleText[] {
+  return [
+    {
+      body: `The Focus Estate gives ${location} drivers extra boot space without stepping too far away from the feel of a normal everyday car.`,
+      alt: `Ford Focus Estate available for practical luggage space in ${location}`,
+    },
+    {
+      body: `The Mondeo is a sensible step up when comfort matters more, especially for longer journeys starting or ending in ${location}.`,
+      alt: `Ford Mondeo saloon for longer road journeys from ${location}`,
+    },
+    {
+      body: `The Mondeo Auto suits ${location} customers who want easier traffic driving while keeping the cabin comfort of a larger saloon.`,
+      alt: `Ford Mondeo automatic for comfortable self-drive hire in ${location}`,
+    },
+    {
+      body: `The Mondeo Estate works well when ${location} travel needs more luggage room for family visits, airport runs or longer stays away.`,
+      alt: `Ford Mondeo Estate with extended luggage room for ${location} hires`,
+    },
+    {
+      body: `The RAV4 Auto is a practical SUV option for ${location} journeys that need extra cabin flexibility and a higher driving position.`,
+      alt: `Toyota RAV4 automatic SUV for flexible travel around ${location}`,
+    },
+    {
+      body: `The C Class Auto gives ${location} customers a more refined option for business travel, client meetings and longer personal trips.`,
+      alt: `Mercedes C Class automatic for executive car hire in ${location}`,
+    },
+    {
+      body: `The E Class Auto is well suited to longer mileage from ${location} where extra cabin space and motorway comfort make a difference.`,
+      alt: `Mercedes E Class automatic executive vehicle hire in ${location}`,
+    },
+    {
+      body: `The Range Rover is there when a ${location} booking needs premium comfort, stronger road presence and more flexible luggage space.`,
+      alt: `Range Rover SUV hire for premium travel in ${location}`,
+    },
+  ]
+}
+
+function createNearbyWhyChooseItems(location: string): WhyChooseText[] {
+  return [
+    {
+      title: "Useful compact fleet",
+      body: `Our compact line-up suits ${location} travel that calls for easy parking, light everyday driving and sensible motorway comfort.`,
+    },
+    {
+      title: "Manual and automatic options",
+      body: `Whether you want a simple city car or an automatic hatchback for ${location} traffic, we keep the choice practical.`,
+    },
+    {
+      title: "Straightforward booking support",
+      body: `We focus on helping ${location} customers choose a vehicle that fits the actual trip rather than overcomplicating the booking.`,
+    },
+    {
+      title: "Good fit for mixed routes",
+      body: `A compact car is often the most practical option when ${location} driving mixes residential roads, station access and quicker regional links.`,
+    },
+    {
+      title: "Wider fleet available",
+      body: `If your ${location} journey needs more than a compact car, we can also help with larger cars, vans, minibuses and trucks.`,
+    },
+    {
+      title: "Built around real local use",
+      body: `Our service is shaped around the kind of everyday driving ${location} customers actually need to do.`,
+    },
+  ]
+}
+
+type NearbyLocationProfile = {
+  location: string
+  heroImage: string
+  heroAlt: string
+  metadataDescription: string
+  heroDescription: string
+  serviceDescription: string
+  whyChooseDescription: string
+  serviceAreasDescription: string
+  localRelevanceDescription: string
+  localBlocks: LocalBlockText[]
+  faqs: FaqText[]
+}
+
+function createNearbyLocationTokens(profile: NearbyLocationProfile): ContentTokenSet {
+  return {
+    metadata: {
+      title: `Compact Car Hire ${profile.location} | Self-Drive Small Cars`,
+      description: profile.metadataDescription,
+    },
+    heroImage: profile.heroImage,
+    heroAlt: profile.heroAlt,
+    heroTitle: `Compact Car Hire in ${profile.location}`,
+    heroDescription: profile.heroDescription,
+    heroSecondaryActionLabel: "View vehicle options",
+    mainServiceKicker: `${profile.location} compact car hire`,
+    mainServiceTitle: `Easy self-drive compact car hire in ${profile.location}`,
+    mainServiceDescription: profile.serviceDescription,
+    mainVehicles: createCompactMainVehicleTexts(profile.location),
+    whyChooseKicker: "Why choose us",
+    whyChooseTitle: `Why compact car hire works well for ${profile.location} drivers`,
+    whyChooseDescription: profile.whyChooseDescription,
+    whyChooseItems: createNearbyWhyChooseItems(profile.location),
+    additionalServicesKicker: "More vehicle options",
+    additionalServicesTitle: `Need more than a compact car in ${profile.location}?`,
+    additionalServicesDescription: `Alongside compact car hire in ${profile.location}, we can also help with estates, larger saloons, SUVs and the wider fleet of vans, minibuses and trucks when the journey needs more room.`,
+    additionalVehicles: createCompactAdditionalVehicleTexts(profile.location),
+    featureCtaTitle: `Check compact car availability in ${profile.location}`,
+    featureCtaDescription: `Tell us what sort of ${profile.location} driving you have planned and we will help you line up a practical compact car quickly.`,
+    serviceAreasKicker: "Areas we cover",
+    serviceAreasTitle: `Vehicle hire for ${profile.location} and nearby routes`,
+    serviceAreasDescription: profile.serviceAreasDescription,
+    localRelevanceKicker: "Local driving guide",
+    localRelevanceTitle: `Why compact car hire makes sense in ${profile.location}`,
+    localRelevanceDescription: profile.localRelevanceDescription,
+    localRelevanceBlocks: profile.localBlocks,
+    bottomCtaTitle: `Book compact car hire in ${profile.location}`,
+    bottomCtaDescription: `If you need a small self-drive car in ${profile.location} for local travel, work appointments or a wider regional journey, get in touch and we will help you choose the right vehicle.`,
+    faqKicker: `${profile.location} hire FAQs`,
+    faqTitle: `Common questions about compact car hire in ${profile.location}`,
+    faqs: profile.faqs,
+  }
+}
+
 const homepageTokens: ContentTokenSet = {
   metadata: {
     title: "Compact Car Hire Newark | Self-Drive Vehicle Hire",
-    description: "Compact car hire in Newark for local driving, station runs, airport trips and everyday travel, with vans, minibuses and trucks also available.",
+    description: "Compact car hire in Newark for town driving, station access and regional travel, with vans, minibuses and trucks also available when you need more room.",
   },
-  heroImage: "/images/homepage_image_1.jpeg",
-  heroAlt: "Line of compact hire cars with wider vehicle fleet in a clean forecourt setting",
-  heroTitle: "Compact car hire in Newark made simple",
-  heroDescription: "Compact car hire in Newark for easy local driving, station runs, airport trips and everyday travel. We also offer vans, minibuses and trucks when you need more space or a different type of vehicle.",
+  heroImage: "/images/compactcarhirenewark-co-uk-homepage-compact-car-fleet.png",
+  heroAlt: "Compact hire cars prepared for everyday driving in Newark-on-Trent",
+  heroTitle: "Compact car hire in Newark made practical",
+  heroDescription: "Compact car hire in Newark for local driving, station pickups, business mileage and wider trips using the A46, A17 and A1, backed by a broader self-drive fleet when you need extra space.",
   heroSecondaryActionLabel: "View vehicle options",
   mainServiceKicker: "Compact car hire",
-  mainServiceTitle: "Self-drive compact cars for everyday travel in Newark",
-  mainServiceDescription: "Our core service is compact car hire for drivers who want something easy to manage, easy to park and comfortable enough for both local and regional travel. Small cars are a strong fit for everyday journeys around Newark, from shopping trips and appointments to station runs, visiting family and covering temporary transport needs when your own car is off the road.\n\nWe focus on practical self-drive options rather than overcomplicated packages. That means a straightforward choice of compact vehicles including city-friendly models and slightly larger hatchbacks, with manual and automatic options available across the wider range. If your journey changes and you need extra room, we can also help with estates, larger cars and SUVs.\n\nBeyond compact cars, we support broader vehicle hire needs across Newark with vans, minibuses and trucks. So whether you need a small runabout today or a larger vehicle for a different job next week, you can arrange it through the same business.",
-  mainVehicles: [
-    { body: "The Fiat 500 is ideal for quick local trips, easy parking and drivers who want a small car that feels simple to use around town.", alt: "Fiat 500 compact hire car for easy driving in Newark" },
-    { body: "A smart choice for convenient automatic driving, especially for short urban journeys, station pickups and everyday errands.", alt: "Hyundai i10 automatic compact hire car in Newark" },
-    { body: "The VW Golf gives you a little more cabin and boot space while still keeping the practical feel of a compact everyday hire car.", alt: "Volkswagen Golf hatchback available for hire in Newark" },
-    { body: "Useful for drivers who want the ease of an automatic with enough comfort for longer regional trips as well as local mileage.", alt: "Ford Focus automatic available for self-drive hire in Newark" },
-  ],
+  mainServiceTitle: "Self-drive compact cars for everyday Newark journeys",
+  mainServiceDescription: `Our Newark compact car hire service is built around the sort of journeys people actually make from town. Some bookings are mainly local and need a car that stays easy around the town centre, residential streets and ordinary car parks. Others mix a station collection at Newark North Gate or Newark Castle with onward mileage on the A46, A17 or A1. A compact hatchback usually handles that balance well because it feels manageable on local roads without becoming tiring on the wider drive.
+
+That makes compact cars a sensible fit for business appointments, temporary replacement transport, family visits and short-notice regional travel from Newark. If the plan grows beyond what a small car should reasonably carry, we can also help with larger cars, estates, SUVs and the wider fleet of vans, minibuses and trucks.`,
+  mainVehicles: createCompactMainVehicleTexts("Newark"),
   whyChooseKicker: "Why choose us",
   whyChooseTitle: "A practical approach to self-drive hire in Newark",
-  whyChooseDescription: "Hiring a car should feel practical, not padded out with unnecessary sales talk. We focus on useful vehicles, clear communication and helping customers find a car that actually fits the journey they have planned in and around Newark.",
+  whyChooseDescription: "We keep compact car hire straightforward for Newark customers by focusing on useful vehicles, clear support and the sort of routes people are really covering between town driving and larger road links.",
   whyChooseItems: [
-    { title: "Cars that suit real journeys", body: "Our compact car range is built around everyday usability, with options that are easy to drive in town and comfortable on longer runs." },
-    { title: "Practical vehicle choices", body: "Need a small city car, an automatic or something with more boot space? We help match the vehicle to the trip rather than forcing one option." },
-    { title: "Straightforward booking support", body: "We keep the process clear and useful, so you can quickly understand what is available and what best fits your plans." },
-    { title: "More than just car hire", body: "If your plans move beyond a compact car, we can also arrange vans, minibuses and trucks through the same business." },
-    { title: "Well suited to the area", body: "Newark drivers often need vehicles for station access, motorway links and local errands, so our service is shaped around everyday local use." },
-    { title: "Flexible around changing needs", body: "Short notice, changed plans and different trip types are common, and we aim to keep your options practical when that happens." },
+    { title: "Cars that suit real journeys", body: "Our compact range is chosen around everyday usability, with smaller cars that feel comfortable both in town and on wider A-road mileage." },
+    { title: "Straightforward vehicle choice", body: "If you need an easy local hatchback, an automatic or something with a little more luggage room, we keep the choices practical rather than confusing." },
+    { title: "Useful local fit", body: "Newark bookings often combine station access, short urban stops and quick links onto the A46, A17 or A1, so the fleet is shaped around that kind of use." },
+    { title: "Support beyond compact cars", body: "If the journey changes, we can also help with larger cars, vans, minibuses and trucks without sending you elsewhere." },
+    { title: "Clear booking help", body: "The focus is on what the vehicle needs to do in practice, not on vague wording or complicated booking language." },
+    { title: "Flexible around changing plans", body: "Replacement transport, mixed local-regional journeys and short-notice bookings are common, and we keep the hire useful around that." },
   ],
   additionalServicesKicker: "Wider fleet options",
-  additionalServicesTitle: "More vehicles when your journey needs extra room",
-  additionalServicesDescription: "Need more space than a compact hatchback? Alongside our smaller cars, we also offer larger family cars, estates, premium automatics and SUVs, plus vans, minibuses and trucks for wider transport needs.",
-  additionalVehicles: [
-    { body: "The Focus Estate is a useful step up when you want car-like driving with a larger boot for luggage, equipment or shopping runs.", alt: "Ford Focus Estate available for practical luggage and load space in Newark" },
-    { body: "A solid choice for longer motorway travel, business appointments and day trips where extra comfort matters.", alt: "Ford Mondeo saloon for longer road journeys from Newark" },
-    { body: "The automatic Mondeo suits drivers who want an easier drive in traffic while keeping the space and comfort of a larger car.", alt: "Ford Mondeo automatic for comfortable self-drive hire in Newark" },
-    { body: "Ideal when passengers and luggage both need room, making it well suited to airport runs, family travel and longer stays away.", alt: "Ford Mondeo Estate with extended luggage room for Newark hires" },
-    { body: "A practical SUV option with a higher driving position, useful for mixed local and regional journeys with passengers and bags.", alt: "Toyota RAV4 automatic SUV for flexible travel around Newark" },
-    { body: "For business travel or a more refined drive, the C Class Auto gives you a smarter cabin and easy motorway comfort.", alt: "Mercedes C Class automatic for executive car hire in Newark" },
-    { body: "The E Class Auto works well for longer business mileage, client travel and occasions where a more spacious executive car is preferred.", alt: "Mercedes E Class automatic executive vehicle hire in Newark" },
-    { body: "When you want extra presence, comfort and cabin space, the Range Rover is suited to higher-end journeys and larger personal loads.", alt: "Range Rover SUV hire for premium travel in Newark" },
-  ],
+  additionalServicesTitle: "More vehicle choice when your Newark trip needs extra room",
+  additionalServicesDescription: "If a compact hatchback is not the right fit, we can also help with larger cars, estates, SUVs and executive automatics. The wider self-drive fleet also includes vans, minibuses and trucks for bigger transport jobs.",
+  additionalVehicles: createCompactAdditionalVehicleTexts("Newark"),
   featureCtaTitle: "Looking for the right vehicle in Newark?",
-  featureCtaDescription: "Need a practical car for local driving, a weekend away or business travel? Get in touch and we will help you find the right vehicle quickly.",
+  featureCtaDescription: "Tell us what sort of driving you have planned and we will help you choose a compact car or a larger vehicle that makes practical sense.",
   serviceAreasKicker: "Areas we cover",
-  serviceAreasTitle: "Vehicle hire around Newark and nearby areas",
-  serviceAreasDescription: "We cover Newark and surrounding towns with practical self-drive hire. If you are nearby and need a compact car, we can also help with larger cars, vans, minibuses and trucks.",
+  serviceAreasTitle: "Vehicle hire around Newark and surrounding towns",
+  serviceAreasDescription: "We support customers in Newark and across nearby Nottinghamshire and Lincolnshire routes, with compact car hire backed by the wider self-drive fleet when extra space is needed.",
   localRelevanceKicker: "Driving in Newark",
   localRelevanceTitle: "Why compact car hire works well in Newark",
-  localRelevanceDescription: "Newark is the kind of place where compact car hire makes practical sense. Many journeys here involve a blend of town-centre roads, local residential routes and quick access onto larger connections such as the M6, M58 and A49. A smaller car helps keep those trips straightforward, whether you are visiting family, covering for your own vehicle, heading to a meeting or making a rail station pickup.\n\nCompact cars also suit the everyday reality of driving around busy local areas where parking space, turning room and stop-start traffic all matter. If you only need a clean, manageable vehicle that is easy to live with for a short trip or a few days of regular use, a compact model is usually the sensible choice.\n\nBecause Newark sits between major routes and surrounding towns, it is also common for customers to need more than one type of vehicle depending on the job. That is why we keep the wider fleet available too, so if your plans move from local driving to moving goods, group travel or larger commercial work, you can stay with one practical self-drive hire provider.",
+  localRelevanceDescription: `Newark is the sort of place where a compact car often feels like the sensible middle ground. Local journeys can involve town-centre turns, station access and ordinary parking, while wider routes quickly open out onto the A46, A17 and A1. A smaller hatchback keeps the local part straightforward without feeling underdone once the booking widens into regional mileage.
+
+That balance is useful for everyday appointments, business travel, family visits and replacement transport. Newark North Gate access, retail stops and practical onward travel all reward a vehicle that is easy to place, easy to park and still settled enough for the larger road section of the day.`,
   localRelevanceBlocks: [
-    { title: "A good fit for mixed Newark driving", body: "Newark works well for compact cars because so many everyday trips mix town driving with short stretches on faster roads. Whether you are heading between the centre, residential areas or nearby retail parks, a smaller car is easier to place, easier to park and less awkward in tighter spaces.\n\nThe M6, M58 and A49 all keep Newark well connected, so a compact hatchback also makes sense if your day includes a mix of local stops and regional travel. You get straightforward motorway capability without stepping up to a larger vehicle than you actually need." },
-    { title: "Useful around stations, retail areas and town routes", body: "If your journey starts near Newark North Western or Newark Wallgate, a compact car is often the most practical choice. It keeps things simple for collections, onward travel and quick turnarounds, especially if you are picking someone up with luggage but do not need a full-size car.\n\nThe same applies to everyday errands around Robin Park, the town centre and surrounding districts where parking spaces and traffic flow can make a smaller vehicle the easier option. For business users, it is a sensible choice when you need to stay mobile without overcomplicating the trip." },
-    { title: "Choose the right size before you set off", body: "Not every journey suits the same vehicle, which is why we keep the wider fleet in view as well. A Fiat 500 or Hyundai i10 Auto can be ideal for compact urban use, while a Golf or Focus Auto gives you extra comfort if your route is longer or you expect more passenger use.\n\nIf plans change and you suddenly need luggage room, load space or passenger capacity, we can also point you towards estates, SUVs, vans, minibuses or trucks. That makes it easier to start with the right vehicle instead of trying to make the wrong one work." },
+    {
+      title: "A sensible fit for mixed Newark journeys",
+      body: `Many Newark bookings combine local movement with a quick change onto larger roads. A compact hatchback keeps the town-centre part of the trip simple while still being comfortable enough once the route widens towards the A46, A17 or A1.
+
+That matters when the day includes several short stops rather than one long uninterrupted drive. A smaller car takes the pressure out of repeated parking and route changes.`,
+    },
+    {
+      title: "Useful around stations, appointments and ordinary parking",
+      body: `Compact cars work particularly well for station access, business visits and day-to-day appointments around Newark. They are easier to slot into ordinary car parks and less awkward in busier local traffic than something larger.
+
+For customers covering replacement transport, that simplicity is often exactly what they want: a clean, manageable vehicle that does not make a normal day harder than it needs to be.`,
+    },
+    {
+      title: "Easy to step up when the plan changes",
+      body: `Sometimes a booking starts as a compact-car job but later needs more carrying room or more passenger comfort. That is one reason we keep the wider fleet in view, from estates and SUVs through to vans, minibuses and trucks.
+
+You can start with the right car for a simple Newark trip and still have a clear route to something larger if the journey grows.`,
+    },
   ],
-  bottomCtaTitle: "Book compact car hire in Newark with straightforward support",
-  bottomCtaDescription: "Tell us where you need to go and what kind of driving you have planned. We will help you choose the right compact car or a larger vehicle from our wider fleet.",
+  bottomCtaTitle: "Book compact car hire in Newark with practical support",
+  bottomCtaDescription: "If you need a compact car in Newark for local driving, business mileage or short regional travel, get in touch and we will help you line up a suitable vehicle.",
   faqKicker: "Common questions",
   faqTitle: "Compact car hire FAQs for Newark",
   faqs: [
-    { question: "Why choose compact car hire in Newark?", answer: "A compact car is often the easiest option for Newark driving if you want simple parking, lighter fuel use and comfortable travel on local roads and short motorway runs." },
-    { question: "Can I arrange compact car hire in Newark at short notice?", answer: "Yes, we can help with short-notice availability in Newark when vehicles are ready to go. The best option is to call and we will talk through what is currently available." },
-    { question: "Do you only offer small cars in Newark?", answer: "Yes. If you need more room than a small hatchback, we also offer estate cars, larger saloons, SUVs, vans, minibuses and trucks." },
-    { question: "What are compact hire cars in Newark usually used for?", answer: "Many customers use compact cars in Newark for station pickups, airport journeys, visiting family, temporary vehicle cover and everyday local travel." },
-    { question: "What do I need to collect my hire car in Newark?", answer: "Bring your driving licence and any booking details when collecting in Newark. If anything else is needed for your hire, we will confirm it before you travel." },
-    { question: "Are automatic cars available for hire in Newark?", answer: "Yes, subject to availability. If you prefer an easier drive for stop-start traffic or a more relaxed motorway run, ask us about our automatic options in Newark." },
+    { question: "Why choose compact car hire in Newark?", answer: "Compact cars make sense in Newark because they are easier to park, easy to drive around town and still comfortable enough for A-road and A1 mileage." },
+    { question: "Can I arrange compact car hire in Newark at short notice?", answer: "Yes, subject to availability. If you need a compact car quickly in Newark, call us and we will talk through what is ready for the timing you need." },
+    { question: "Do you only offer small cars in Newark?", answer: "No. Compact cars are the core offer on this page, but we also provide larger cars, estates, SUVs, vans, minibuses and trucks when the journey needs more room." },
+    { question: "What are compact hire cars in Newark commonly used for?", answer: "Common uses include station runs, business visits, shopping trips, family travel, temporary replacement transport and short regional journeys." },
+    { question: "Are automatic compact cars available in Newark?", answer: "Yes, subject to availability. If you prefer an automatic for easier local traffic or more relaxed regional driving, ask us when you book." },
+    { question: "What should I tell you when booking in Newark?", answer: "The most useful details are the dates, expected route, whether you want manual or automatic driving, and whether there is any chance you will need more space than a compact hatchback." },
   ],
 }
 
 const vanHireTokens: ContentTokenSet = {
   metadata: {
     title: "Van Hire Newark | Practical Vans for Moves, Deliveries and Trade",
-    description: "Van hire in Newark for home moves, deliveries, trade work and specialist jobs. Choose from compact vans, larger Transits, Lutons and more.",
+    description: "Van hire in Newark for home moves, deliveries, trade work and specialist transport, with compact vans, Transits, Lutons and more available.",
   },
-  heroImage: "/images/van_hire_image_1.jpeg",
-  heroAlt: "Modern rental van being loaded with boxes outside a house",
-  heroTitle: "Van hire in Newark for work, moves and deliveries",
-  heroDescription: "Practical van hire in Newark for moves, trade work, deliveries, collections and business use. Choose from compact vans, larger panel vans and specialist vehicles to suit the job.",
+  heroImage: "/images/compactcarhirenewark-co-uk-van-hire-main-fleet.png",
+  heroAlt: "Modern self-drive rental van ready for loading in Newark",
+  heroTitle: "Van hire in Newark for moves, work and collections",
+  heroDescription: "Practical van hire in Newark for home moves, deliveries, trade jobs, stock collections and specialist transport when a standard car is not enough.",
   heroSecondaryActionLabel: "View van options",
   mainServiceKicker: "Newark van fleet",
-  mainServiceTitle: "Van hire for moves, work and transport needs",
-  mainServiceDescription: "Our van hire service in Newark is built around real day to day jobs. Some customers need a compact van for quick collections, storage runs or tool transport. Others need a larger panel van for furniture, stock, equipment or a full moving day. We also offer specialist options for more specific work, including dropsides, tippers, recovery vehicles and a cherry picker.\n\nWhether you are moving home, covering trade jobs, handling site work or making business deliveries, the right van makes a big difference. A smaller van can be easier to park and manoeuvre in tighter areas, while longer wheelbase and box vans give you the extra carrying room needed for larger loads. If you are unsure what will suit your route or cargo, we can help you narrow it down to a practical choice.",
+  mainServiceTitle: "Van hire for practical jobs across Newark and beyond",
+  mainServiceDescription: `Our van hire service in Newark is built around jobs that need useful carrying space without overcomplicating the booking. Some customers only need a compact van for boxes, tools or a quick furniture pickup. Others need a larger panel van, a Luton with tail lift or a more specialist vehicle for site work, access jobs or vehicle transport. The important part is matching the van to the load, the loading point and the route rather than guessing.
+
+Newark works well for van hire because local jobs often move between residential streets, business units and quicker A-road links. Routes using the A46, A17, Brunel Drive, Northern Road and the wider A1 corridor can all feel different depending on the size of the vehicle and the type of load. We keep the choice practical so customers can line up a van that fits the day rather than making the day fit the wrong van.`,
   mainVehicles: [
-    { body: "A compact Caddy van that suits small deliveries, toolbox transport, parcel runs and quick local collections where easy parking is important.", alt: "Caddy van for compact cargo and local deliveries" },
-    { body: "The short wheelbase Transit is a solid all rounder for furniture pickups, trade materials and everyday business loads without moving into a larger footprint.", alt: "Ford Transit SWB van for everyday transport jobs" },
-    { body: "An automatic VW Transporter that works well for drivers who want a smooth, easy van for city driving, service visits and regular stop start journeys.", alt: "VW Transporter automatic van for easy urban driving" },
-    { body: "A medium wheelbase Transit with extra load length for moving larger items, boxed stock, event kit or trade equipment across several stops.", alt: "Ford Transit MWB van for medium load transport" },
-    { body: "The long wheelbase Transit is well suited to larger house moves, bulky furniture, workplace clearances and loads that need more internal space.", alt: "Ford Transit LWB van for bulky loads and moves" },
-    { body: "A longer 4 metre Sprinter for extended loads, larger move days and commercial transport where extra room helps avoid multiple trips.", alt: "4 metre Sprinter van for long items and larger loads" },
-    { body: "A Luton box van with tail lift that is ideal for removals, appliances, heavier furniture and jobs where easier loading makes a real difference.", alt: "Ford Luton box van with tail lift for removals and heavy items" },
-    { body: "A dropside Transit for timber, landscaping materials, site equipment and other awkward loads that are easier to secure on an open body.", alt: "Ford Transit dropside van for open load carrying" },
-    { body: "A 3.5 tonne tipper Transit for builders, landscapers and site teams moving aggregates, waste, tools and loose materials efficiently.", alt: "3.5 tonne tipper Transit for site and waste jobs" },
-    { body: "A practical recovery van for vehicle transport, collection work and planned roadside moves where a dedicated carrying setup is needed.", alt: "Recovery van for vehicle transport and collection work" },
-    { body: "A VW campervan for weekend escapes, touring breaks and flexible road trips when you want a practical self drive leisure vehicle.", alt: "VW campervan for touring and leisure travel" },
-    { body: "A cherry picker van for access work such as maintenance, inspections, signage and property tasks where safe reach matters as much as mobility.", alt: "12.5 metre cherry picker van for elevated access work" },
+    { body: "A compact Caddy van that suits smaller deliveries, toolbox transport, parcel runs and local collections where simple parking matters.", alt: "Caddy van for compact cargo and local deliveries in Newark" },
+    { body: "The short wheelbase Transit is a solid all-rounder for furniture pickups, trade materials and stock movement without stepping into a larger footprint.", alt: "Ford Transit SWB van for everyday transport jobs in Newark" },
+    { body: "The automatic VW Transporter is useful for drivers who want smoother stop-start driving around town and easier day-to-day van use.", alt: "VW Transporter automatic van for easy driving in Newark" },
+    { body: "The medium wheelbase Transit adds carrying length for larger deliveries, event kit, business stock and longer multi-stop jobs.", alt: "Ford Transit MWB van for medium load transport in Newark" },
+    { body: "The long wheelbase Transit works well for larger move days, awkward furniture and bulkier loads that need more internal space.", alt: "Ford Transit LWB van for bulky loads and moves in Newark" },
+    { body: "The 4 metre Sprinter is useful for extended loads and bigger carrying jobs where avoiding repeat trips saves real time.", alt: "4 metre Sprinter van for long items and larger loads in Newark" },
+    { body: "A Luton box van with tail lift that is ideal for removals, appliances and heavier loads where easier loading makes the whole day smoother.", alt: "Ford Luton box van with tail lift for removals in Newark" },
+    { body: "The dropside Transit is a practical choice for timber, landscaping materials and awkward open loads that are easier to secure from the side.", alt: "Ford Transit dropside van for open load carrying in Newark" },
+    { body: "The 3.5 tonne tipper is well suited to builders, landscapers and site teams moving waste, loose materials and heavier working loads.", alt: "3.5 tonne tipper Transit for site and waste jobs in Newark" },
+    { body: "The recovery van is there for planned vehicle transport and collection work that needs a proper carrying setup.", alt: "Recovery van for vehicle transport in Newark" },
+    { body: "A VW campervan for leisure travel, touring breaks and flexible road-trip bookings starting from Newark.", alt: "VW campervan for touring and leisure travel from Newark" },
+    { body: "The cherry picker suits access work such as maintenance, inspections and signage where safe reach matters as much as mobility.", alt: "12.5 metre cherry picker van for access work in Newark" },
   ],
   whyChooseKicker: "Why hire from us",
   whyChooseTitle: "A practical van hire service for real work",
-  whyChooseDescription: "Van hire is rarely just about getting any vehicle. It is about getting one that actually works for the route, the load and the way the day is going to run. We keep that in mind when helping customers choose between compact vans, larger panel vans and specialist options in Newark.",
+  whyChooseDescription: "Van hire is rarely about getting just any vehicle. It is about getting one that actually works for the route, the load and the pace of the day. That is the approach we keep in mind for Newark van bookings.",
   whyChooseItems: [
-    { title: "Useful fleet choices", body: "From compact vans to larger carrying options, the fleet covers everyday transport jobs as well as heavier duty tasks." },
-    { title: "Job led advice", body: "Whether you are moving furniture, carrying tools or collecting stock, we focus on what the van needs to do in practice." },
-    { title: "Specialist options available", body: "Automatic vans, Lutons, tippers, dropsides and recovery vehicles help when a standard panel van is not the right fit." },
-    { title: "Practical route matching", body: "A van that suits your streets, loading points and route plan can save time and hassle on the day." },
-    { title: "Good regional access", body: "Newark is well placed for local work and wider travel across the North West, making van hire useful for both short and longer runs." },
-    { title: "Straightforward booking support", body: "We keep the process straightforward so you can get on with the move, delivery or job without overcomplicating it." },
+    { title: "Useful fleet coverage", body: "From compact vans to larger Transits and specialist bodies, the fleet covers routine transport jobs as well as more demanding work." },
+    { title: "Job-led advice", body: "We focus on what you are moving, how it will load and where it needs to go, rather than forcing a one-size-fits-all choice." },
+    { title: "Specialist options available", body: "Lutons, dropsides, tippers, recovery vehicles and a cherry picker are available when a standard panel van is not enough." },
+    { title: "Practical route matching", body: "The right van for town-centre collections may not be the right van for a wider A1 run with bulky stock, so we keep that distinction in view." },
+    { title: "Good local positioning", body: "Newark is well placed for short local transport as well as wider Nottinghamshire and Lincolnshire journeys." },
+    { title: "Straightforward booking support", body: "The aim is to keep the hire useful and clear so you can get on with the move, delivery or job." },
   ],
   featureCtaTitle: "Need van hire in Newark?",
-  featureCtaDescription: "Need a van for moving, deliveries or site work in Newark? Speak to our team and we will help you choose a practical vehicle without the guesswork.",
+  featureCtaDescription: "If you need a van for moving, deliveries, site work or stock transport, get in touch and we will help you choose a practical vehicle.",
   serviceAreasKicker: "Areas we cover",
-  serviceAreasTitle: "Van hire in Newark and nearby areas",
-  serviceAreasDescription: "We support van hire from Newark across surrounding towns and key route corridors, making it easier to cover local jobs, regional deliveries and one off transport tasks.",
+  serviceAreasTitle: "Van hire in Newark and surrounding routes",
+  serviceAreasDescription: "We support van hire from Newark across nearby towns and key Nottinghamshire and Lincolnshire routes, making it easier to cover local jobs and wider carrying work.",
   localRelevanceKicker: "Local van hire guidance",
-  localRelevanceTitle: "Van hire that fits the way Newark journeys actually work",
-  localRelevanceDescription: "Van hire in Newark suits a wide range of practical jobs, from moving between neighbourhoods to making collections across the wider North West. The town is well placed for local runs and regional travel alike, with strong links through the M6, M58 and A49. That makes it a useful base whether you are collecting furniture, transporting tools, delivering stock or handling a one off house move.\n\nThe key is matching the van to the work. Smaller vans are easier in tighter streets and busier built up areas, while longer and taller vans make better use of time when the load is bulky or awkward. For more specialist tasks, vehicles such as Lutons, dropsides, tippers and recovery vans can make the whole day more straightforward.\n\nIf you know the route, the type of load and how many stops are involved, choosing well becomes much easier. That is especially true around Newark, where one hire might include residential streets, retail collections, motorway sections and site access all in the same journey.",
+  localRelevanceTitle: "Van hire that fits the way Newark jobs actually run",
+  localRelevanceDescription: `Van hire in Newark is usually about practical movement rather than one long uninterrupted drive. A day might include a collection on one side of town, a stop at a storage unit, a run towards a business park and then a stretch on the A46, A17 or A1. That mix is why choosing the right van matters so much.
+
+Smaller vans are often the better choice when parking space is tighter or loading points are awkward. Larger panel vans, Lutons and specialist vehicles come into their own when the load is bulky, heavy or irregular. Around Newark, where Brunel Drive, Northern Road and wider route connections can all form part of the same day, it helps to choose the van with the route in mind.`,
   localRelevanceBlocks: [
-    { title: "Planning routes around Newark and beyond", body: "Newark works well for van hire because it sits between major routes rather than being cut off from them. If you are moving between Newark town centre, Standish, Ashton-in-Makerfield or Hindley, a van gives you the flexibility to load once and keep the day moving. For wider trips, the M6, M58 and M61 links help with access across Lancashire, Greater Worksop and Merseyside.\n\nIf your route includes industrial estates, retail parks or storage sites, it is worth thinking about turning space and loading access before you travel. A smaller van can be much easier around tighter streets and smaller forecourts, while a longer wheelbase van makes more sense when the load is bulky and the route is more straightforward." },
-    { title: "Choosing a van for home moves and collections", body: "For domestic jobs, access often matters as much as load volume. Terraced streets, shared parking bays and short loading windows can all affect which van is easiest to live with for the day. Areas closer to the town centre or around station approaches may suit a compact van better, especially if you are making repeated stops or collecting from mixed residential and retail locations.\n\nOn larger move days, it helps to break the journey into stages before collection. Measure the biggest items, think about door widths, and consider whether a tail lift or lower loading height would make the job smoother. A Luton or bigger Transit can save repeat trips, but only if the pickup and drop off points allow for easier parking and unloading." },
-    { title: "Vans for trade work, stock and site tasks", body: "Trade users often need vans that work across a full day rather than just getting from one point to another. If you are carrying tools, materials or stock between jobs in Newark, Bryn, Ince-in-Makerfield or nearby business parks, choosing the right van can make loading faster and keep the working day more organised. Dropsides and tippers are especially useful where awkward materials or site waste are part of the plan.\n\nFor motorway runs or timed delivery work, it is smart to consider where delays are most likely. Junctions feeding the M6 and M61 can slow down at busy times, and town centre access changes the pace of short local jobs. A sensible van choice keeps the route manageable, the load secure and the day easier to schedule." },
+    {
+      title: "Planning loads around local roads and industrial areas",
+      body: `Newark van jobs often move between residential addresses, storage facilities and business areas such as Brunel Drive or Northern Road. That means the van needs to work in both tighter urban spots and more open loading areas.
+
+A smaller van may be the smartest choice if access is awkward or parking is limited. When the load is bulkier, stepping up to a longer wheelbase or Luton usually saves time overall.`,
+    },
+    {
+      title: "Choosing well for A-road and A1 mileage",
+      body: `If the job uses the A46, A17 or heads on towards the A1, the carrying layout matters just as much as the route. Loads that shift around or need repeated handling can make the whole day slower than it needs to be.
+
+A van that fits the load properly is often more useful than simply choosing the largest one available. That is especially true on mixed local and regional journeys from Newark.`,
+    },
+    {
+      title: "Useful specialist options when the work changes",
+      body: `Not every job is a panel-van job. Landscaping work, waste, access tasks and vehicle transport all call for something more specific, which is why we keep tippers, dropsides, recovery vehicles and a cherry picker in the wider line-up.
+
+If the day has a specialist requirement, it is usually easier to set up the right vehicle from the start than to make a standard van work around it.`,
+    },
   ],
-  bottomCtaTitle: "Book the right van for the job",
-  bottomCtaDescription: "Tell us what you need to carry, where you are heading and how long you need the van for. We will help you choose a practical option for the job.",
+  bottomCtaTitle: "Book van hire in Newark with practical guidance",
+  bottomCtaDescription: "Tell us what needs moving, where it is going and what kind of route you expect to cover, and we will help you line up a van that fits the job.",
   faqKicker: "Van hire FAQs",
   faqTitle: "Common questions about van hire in Newark",
   faqs: [
-    { question: "What size van should I hire?", answer: "A compact van suits small loads, tools and boxed items, while larger vans are better for furniture, pallets or longer materials. If you are unsure, describe the load and we can point you towards a sensible size." },
-    { question: "Can I hire a van for moving house or collecting furniture?", answer: "Yes, many customers use van hire for house moves, flat moves, furniture collection, event kit, trade work and business transport. The best van depends on access, load shape and how many stops you need to make." },
-    { question: "Do you offer automatic vans?", answer: "Automatic options are available in selected vans, including practical choices for drivers who prefer easier stop start driving around town or on motorway runs." },
-    { question: "Can I use the van for longer distance travel?", answer: "Yes, vans are commonly used for local work in Newark as well as regional trips across Greater Worksop, Lancashire, Merseyside and beyond. Let us know your route so we can help match the van to the journey." },
-    { question: "Do you have specialist vans as well as standard panel vans?", answer: "Recovery vans are designed for vehicle transport, while tippers, dropsides and Lutons suit very different jobs. If you need specialist capability, tell us the task and we will guide you to the right vehicle type." },
-    { question: "What should I check before collecting a hire van?", answer: "Bring your licence and the usual hire details, and make sure you are comfortable with the vehicle size before setting off. It also helps to plan parking, loading space and any low clearance points on your route." },
+    { question: "What kind of van hire jobs are common in Newark?", answer: "Common Newark van bookings include home moves, furniture pickups, stock transport, trade work, storage runs, site jobs and one-off deliveries." },
+    { question: "How do I choose the right van size in Newark?", answer: "The key things are the size and shape of the load, the loading point, and whether the route includes tighter local access or mostly larger roads. We can help you work through that." },
+    { question: "Do you offer specialist vans in Newark?", answer: "Yes. Alongside standard panel vans we can also help with Lutons, dropsides, tippers, a recovery vehicle, a campervan and a cherry picker." },
+    { question: "Is van hire in Newark useful for business work?", answer: "Yes. Many business customers use Newark van hire for tools, materials, event equipment, stock movement and short-notice transport between sites." },
+    { question: "Can I arrange Newark van hire at short notice?", answer: "Yes, subject to availability. If you need a van quickly, call us and we will talk through what is available for the timing and load you have in mind." },
+    { question: "What should I tell you when booking a van in Newark?", answer: "The most useful details are what you are moving, how bulky it is, where you are loading and unloading, and whether the route is mostly local or includes longer regional mileage." },
   ],
 }
 
 const minibusHireTokens: ContentTokenSet = {
   metadata: {
-    title: "Minibus Hire Newark | Group Travel Vehicle Hire",
-    description: "Minibus hire in Newark for airport transfers, family trips, events and group travel. Choose practical passenger vehicles for local and regional journeys.",
+    title: "Minibus Hire Newark | Self-Drive Group Travel",
+    description: "Minibus hire in Newark for family travel, airport runs, group outings, sports fixtures and wider regional transport.",
   },
-  heroImage: "/images/minibus_hire_image_1.jpeg",
-  heroAlt: "Modern minibus loading passengers and luggage near an airport pickup area",
-  heroTitle: "Minibus Hire Newark",
-  heroDescription: "Practical minibus hire in Newark for family trips, airport journeys, events, teams and group outings. Choose from flexible people carriers and larger minibuses.",
+  heroImage: "/images/compactcarhirenewark-co-uk-minibus-hire-main-fleet.png",
+  heroAlt: "Modern self-drive minibus ready for group travel from Newark",
+  heroTitle: "Minibus hire in Newark for group trips and planned travel",
+  heroDescription: "Self-drive minibus hire in Newark for airport runs, family events, sports travel, work groups and days out when keeping everyone together is easier than using multiple cars.",
   heroSecondaryActionLabel: "View minibus options",
-  mainServiceKicker: "Group vehicle hire",
-  mainServiceTitle: "Newark minibus hire for shared journeys of all kinds",
-  mainServiceDescription: "Our Newark minibus hire service is built around real group travel needs. That might mean a compact people carrier for family outings, a larger vehicle for a club trip, or a full minibus for airport transfers, weddings or event travel. The focus is on giving you enough seats, sensible luggage space and a vehicle that feels suited to the road plan ahead.\n\nWe support journeys that stay local as well as trips heading further afield across the North West and beyond. If you are organising transport for relatives, colleagues, sports teams or guests, we help you sort the practical side early so the travel day is easier to manage.",
+  mainServiceKicker: "Newark minibus fleet",
+  mainServiceTitle: "Group-friendly vehicle hire for Newark journeys",
+  mainServiceDescription: `Our minibus hire service in Newark is there for journeys where keeping passengers together makes the day easier. That might mean a family trip with luggage, a sports team moving equipment, an airport run, a work group heading to an event or a larger social plan where separate cars would only complicate the timing. We offer a range that starts with people carriers and extends through larger self-drive minibuses.
+
+Newark is a practical base for group travel because local pickups can quickly turn into A-road or A1 mileage towards Nottinghamshire, Lincolnshire and wider regional destinations. A well-matched minibus keeps luggage space, seating and comfort in balance, which is especially important when the trip includes multiple pickup points or a long return leg at the end of the day.`,
   mainVehicles: [
-    { body: "The Vauxhall Zafira 5 plus 2 is a flexible choice for families and small groups who need extra seats without stepping up to a full minibus.", alt: "Vauxhall Zafira 5 plus 2 people carrier for hire in Newark" },
-    { body: "The Galaxy 7 Seater Manual is well suited to airport runs, weekend breaks and group travel where passenger comfort matters.", alt: "Ford Galaxy 7 seater manual hire vehicle in Newark" },
-    { body: "The Galaxy 7 Seater Automatic offers the same roomy layout with easier driving for longer trips and mixed urban motorway routes.", alt: "Ford Galaxy 7 seater automatic people carrier for Newark hire" },
-    { body: "The 9 Seater Manual is a practical option for larger families, work outings and sports travel when one vehicle is easier than multiple cars.", alt: "9 seater manual minibus for group travel in Newark" },
-    { body: "The 9 Seater Automatic is a useful choice for shared travel where automatic driving and easy passenger loading are both important.", alt: "9 seater automatic minibus hire in Newark" },
-    { body: "The Ford 12 Seater works well for clubs, school outings, guest transport and group day trips with straightforward boarding and seating.", alt: "Ford 12 seater minibus available for hire in Newark" },
-    { body: "The Ford 15 Seater gives growing groups more room, making it a strong fit for event travel, team transport and organised outings.", alt: "Ford 15 seater minibus for larger groups in Newark" },
-    { body: "The Ford Minibus LITE 17 Seater is designed for larger groups needing extra capacity, with a layout aimed at drivers without D1 entitlement.", alt: "Ford Minibus Lite 17 seater no D1 hire vehicle in Newark" },
-    { body: "The Ford 17 Seater is a full-capacity option for major group movements where keeping everyone together is the priority.", alt: "Ford 17 seater minibus hire for group transport in Newark" },
+    { body: "A compact 5 plus 2 people carrier that suits lighter group travel where easy local driving matters just as much as seating flexibility.", alt: "Vauxhall Zafira 5 plus 2 available for self-drive hire in Newark" },
+    { body: "The manual Galaxy works well for family trips, station pickups and airport travel when you need seven seats without stepping up to a full minibus.", alt: "Galaxy 7 seater manual available for hire in Newark" },
+    { body: "The automatic Galaxy keeps group travel easier in traffic while giving you the comfort and seat flexibility needed for longer runs.", alt: "Galaxy 7 seater automatic for group travel in Newark" },
+    { body: "A practical 9 seater for larger families, event groups and sports trips where everyone needs to stay together.", alt: "9 seater manual minibus available for hire in Newark" },
+    { body: "The 9 seater automatic suits groups who want the same capacity with less work for the driver in heavier traffic or longer mileage.", alt: "9 seater automatic minibus hire in Newark" },
+    { body: "The 12 seater Ford minibus is useful for organised group travel, community use and event transport with a clear passenger layout.", alt: "Ford 12 seater minibus for self-drive hire in Newark" },
+    { body: "The 15 seater model adds more capacity for schools, clubs and teams travelling together from Newark.", alt: "Ford 15 seater minibus for larger group bookings in Newark" },
+    { body: "A 17 seater LITE option for larger bookings where no D1 entitlement is required, making it practical for more drivers.", alt: "Ford LITE 17 seater minibus available in Newark" },
+    { body: "The full 17 seater model is there for larger organised groups that need maximum passenger space from one vehicle.", alt: "Ford 17 seater minibus for high-capacity travel from Newark" },
   ],
-  whyChooseKicker: "Why choose us",
-  whyChooseTitle: "Minibus hire planned around real journeys",
-  whyChooseDescription: "Group travel can become awkward quickly if the vehicle is too small, the luggage space is overlooked or the route has not been thought through. We keep the process practical, helping customers in Newark choose a passenger vehicle that genuinely fits the journey rather than simply filling seats.",
+  whyChooseKicker: "Why hire from us",
+  whyChooseTitle: "A practical minibus service for real group travel",
+  whyChooseDescription: "Group travel only feels straightforward when the vehicle suits the luggage, the route and the number of passengers. We keep minibus hire practical for Newark customers by focusing on what the day actually needs.",
   whyChooseItems: [
-    { title: "Options for different group sizes", body: "From smaller people carriers to larger minibuses, we help you match the vehicle to the number of passengers and the type of trip." },
-    { title: "Luggage considered properly", body: "We consider bags, prams, sports equipment and travel extras so the vehicle works in practice, not just on seat count alone." },
-    { title: "Built around the trip", body: "Airport runs, weddings, fixtures and family events all have different timing needs. We help you choose with the journey purpose in mind." },
-    { title: "Straight advice on licence needs", body: "If a larger minibus needs a specific licence category, we explain that clearly and point you toward suitable alternatives where available." },
-    { title: "Ready for short and longer routes", body: "Our vehicles are suited to local Newark travel as well as longer motorway journeys across the region." },
-    { title: "Supported by a broader fleet", body: "If your plans change and you need a van, compact car or truck instead, we can help through the wider hire fleet." },
+    { title: "Flexible seating options", body: "From people carriers to larger self-drive minibuses, the range covers smaller family travel as well as bigger organised groups." },
+    { title: "Useful for mixed routes", body: "Many Newark group journeys combine local pickups with longer A-road or A1 mileage, so the vehicles are chosen around that balance." },
+    { title: "Practical luggage planning", body: "Passenger numbers matter, but so does luggage, kit and how many pickup points are involved. We keep that in view when helping customers choose." },
+    { title: "Suitable for leisure and work", body: "The fleet supports family events, airport runs, sports travel, work trips and organised outings without overcomplicating the booking." },
+    { title: "Easier route planning", body: "Keeping everyone in one vehicle can simplify timing, pickups and luggage handling on Newark journeys." },
+    { title: "Regional travel ready", body: "The vehicles are suited to the kind of A-road and motorway mileage common on Newark group trips." },
   ],
-  featureCtaTitle: "Travelling together starts with the right vehicle",
-  featureCtaDescription: "Need to move a group without splitting into several cars? Speak to us about practical minibus hire options for Newark and surrounding routes.",
+  featureCtaTitle: "Need minibus hire in Newark?",
+  featureCtaDescription: "If you are planning group travel from Newark, tell us how many passengers you have and where the trip is heading and we will help you choose the right vehicle.",
   serviceAreasKicker: "Areas we cover",
-  serviceAreasTitle: "Serving Newark and surrounding areas for minibus hire",
-  serviceAreasDescription: "We provide minibus hire from Newark across nearby towns and onward routes, helping groups travel together for local pickups, regional trips and airport journeys.",
-  localRelevanceKicker: "Local travel guidance",
-  localRelevanceTitle: "Minibus hire that suits how groups travel from Newark",
-  localRelevanceDescription: "Minibus hire in Newark works best when the vehicle matches the real shape of the journey. Some trips are short local runs with a few passengers and light bags. Others involve airport travel, event schedules, relatives joining from different pickup points or teams carrying kit. We help you choose a minibus that fits the route, the group and the practical demands of the day.\n\nNewark is well placed for regional travel, but that also means journeys often join busy main roads quickly. Whether you are setting off toward the M6, linking across the M61, or heading west on the M58, the right passenger vehicle makes a big difference to comfort, loading and overall timing. A properly matched minibus keeps the trip simpler from the first pickup to the final stop.",
+  serviceAreasTitle: "Minibus hire from Newark and nearby routes",
+  serviceAreasDescription: "We support minibus hire from Newark across nearby towns and wider regional routes, making group travel easier to organise from one practical base.",
+  localRelevanceKicker: "Local minibus hire guidance",
+  localRelevanceTitle: "Why minibus hire works well from Newark",
+  localRelevanceDescription: `Newark is a strong base for minibus hire because local pickups often lead quickly onto wider routes. A booking might begin with family or group collections around town, continue via Newark North Gate or Newark Castle, and then widen onto the A46, A17 or A1 for the main stretch of the trip. That is exactly the kind of travel where keeping everyone together becomes easier than splitting passengers between several vehicles.
+
+The key is choosing a minibus that balances seating, luggage and driving comfort properly. Around Newark, where group journeys often mix local access with longer regional mileage, that balance makes a visible difference to how smooth the day feels.`,
   localRelevanceBlocks: [
-    { title: "Getting groups moving around Newark", body: "Newark sits in a useful position for group travel because routes split easily towards Worksop, Liverpool, Gainsborough and the wider North West. If your journey starts near the town centre, it helps to plan around the A49 and A577 corridors, especially when schools, stations and shopping traffic all overlap. A minibus is often easier to manage than several separate cars when your pickup points are spread across different parts of town.\n\nFor airport runs or event travel, keeping everyone together also helps with timing. Rather than coordinating arrivals from multiple vehicles, one minibus keeps the journey simpler and makes luggage planning easier from the start." },
-    { title: "Choosing the right size for the journey", body: "If you are heading out from Newark North Western or Newark Wallgate areas, or collecting people from nearby neighbourhoods before joining the motorway network, a smaller people carrier can be the neatest option for mixed age groups and light luggage. It is easier to place in tighter streets and simpler for drivers more used to standard cars.\n\nFor weddings, sports teams, school events or longer day trips, a larger minibus usually makes more sense. It gives you better passenger capacity and avoids the stop-start feel that comes with trying to convoy several vehicles across the M6 or M58 corridors." },
-    { title: "Better planning for shared travel", body: "The most useful group travel plans are the ones that deal with real details early. Think about where everyone is boarding, whether you need room for hold luggage, and how much time you want between pickups. Journeys toward Worksop Airport, matchdays, race meetings or family events all run more smoothly when the passenger count and luggage needs are clear before collection.\n\nIf your route involves schools, hotels, venues or sports grounds, tell us that up front. We can help you narrow the choice so the minibus suits both the trip and the driver, rather than just the headcount on paper." },
+    {
+      title: "Useful for town pickups and onward A-road travel",
+      body: `A lot of Newark minibus bookings start with several local pickups before the main journey even begins. That could mean collecting family, a club group or work passengers before heading onto the A46, A17 or A1.
+
+A well-sized minibus keeps that process simpler because everyone stays together from the start and the driver does not need to coordinate multiple cars.`,
+    },
+    {
+      title: "A practical fit for luggage and organised group plans",
+      body: `Group travel is not only about passenger numbers. Luggage, sports kit, event equipment and airport bags all change what the right vehicle looks like.
+
+Choosing the right minibus from the start is usually what keeps the day comfortable rather than cramped, especially on longer return journeys from Newark.`,
+    },
+    {
+      title: "Good for family, sports and community travel",
+      body: `Newark minibus hire is commonly useful for family functions, sports teams, work groups and other organised journeys where keeping everyone on one schedule matters.
+
+Instead of managing several drivers and several arrival times, one suitable vehicle often makes the plan far easier to run.`,
+    },
   ],
-  bottomCtaTitle: "Plan your Newark minibus hire with confidence",
-  bottomCtaDescription: "Tell us where you are travelling, how many people are coming and what kind of trip you are planning. We will help you find the right minibus hire for Newark.",
-  faqKicker: "Minibus hire questions",
-  faqTitle: "Newark minibus hire FAQs",
+  bottomCtaTitle: "Book minibus hire in Newark with practical support",
+  bottomCtaDescription: "Tell us how many passengers you need to move, what luggage is involved and where the trip is going, and we will help you line up a suitable minibus.",
+  faqKicker: "Minibus hire FAQs",
+  faqTitle: "Common questions about minibus hire in Newark",
   faqs: [
-    { question: "What is Newark minibus hire usually used for?", answer: "Yes, we can help with minibus hire in Newark for airport runs, family travel, sporting fixtures, wedding guests and other shared journeys." },
-    { question: "How do I choose the right minibus for my trip?", answer: "Choose based on passenger numbers, luggage and journey length. A smaller people carrier may suit a family trip, while larger groups are better served by a full minibus." },
-    { question: "Can I hire a minibus without D1 on my licence?", answer: "Some larger minibuses require the right entitlement, while others are suitable for drivers without D1. Ask before booking and we will explain the options clearly." },
-    { question: "Is there enough luggage space in a minibus?", answer: "It can do, depending on the vehicle and the amount of luggage. Let us know if you are travelling with cases, prams, sports kit or event equipment." },
-    { question: "Do you provide minibuses for clubs and group outings in Newark?", answer: "Yes, Newark minibus hire is often a practical choice for school, club and team travel when everyone needs to arrive together." },
-    { question: "How do I arrange minibus hire in Newark?", answer: "Call us with your travel dates, group size and destination. We will talk you through the available minibus options and help you choose the best fit." },
+    { question: "What is Newark minibus hire commonly used for?", answer: "Common uses include airport runs, family events, sports fixtures, group outings, work travel and other organised journeys where keeping passengers together is easier." },
+    { question: "How do I choose the right minibus size in Newark?", answer: "The most useful starting points are passenger numbers, luggage, how many pickup points are involved and whether the route is mainly local or includes longer regional mileage." },
+    { question: "Do you only offer large minibuses in Newark?", answer: "No. We offer people carriers and smaller group vehicles as well as larger minibuses, so the booking can be matched to the group rather than over-sized by default." },
+    { question: "Is minibus hire in Newark useful for airport travel?", answer: "Yes. Newark minibus hire is a practical option for airport runs because it keeps passengers and luggage together in one vehicle." },
+    { question: "Can I arrange minibus hire in Newark at short notice?", answer: "Yes, subject to availability. If the trip is coming up soon, call us and we will talk through the options that fit your group." },
+    { question: "What should I tell you when booking a minibus in Newark?", answer: "The most useful details are the number of passengers, the amount of luggage, the route, the pickup pattern and whether the group has any specific seating or access requirements." },
   ],
 }
 
 const truckHireTokens: ContentTokenSet = {
   metadata: {
-    title: "Truck Hire Newark | Commercial Truck Rental",
-    description: "Truck hire in Newark for removals, deliveries, site work and commercial transport. Box, curtain side, dropside, tipper and tail lift truck options available.",
+    title: "Truck Hire Newark | Box, Tail Lift and Specialist Trucks",
+    description: "Truck hire in Newark for removals, site work, business transport and specialist carrying jobs using practical self-drive vehicles.",
   },
-  heroImage: "/images/truck_hire_image_1.jpeg",
-  heroAlt: "Rigid hire truck parked at an industrial unit during a delivery job",
-  heroTitle: "Truck Hire Newark",
-  heroDescription: "Truck hire in Newark for removals, site work, larger deliveries and commercial transport. Choose from box trucks, curtain siders, tippers, recovery trucks and more.",
+  heroImage: "/images/compactcarhirenewark-co-uk-truck-hire-main-fleet.png",
+  heroAlt: "Self-drive truck prepared for heavier transport work in Newark",
+  heroTitle: "Truck hire in Newark for heavy loads and specialist jobs",
+  heroDescription: "Self-drive truck hire in Newark for removals, site support, stock movement, heavier transport work and jobs that need more than a van can comfortably handle.",
   heroSecondaryActionLabel: "View truck options",
-  mainServiceKicker: "Commercial vehicle hire",
-  mainServiceTitle: "Truck hire in Newark for serious carrying work",
-  mainServiceDescription: "Our truck hire service in Newark is built for heavier transport tasks where a van is no longer enough. That includes removals support, site deliveries, stock movement, trade transport, recovery work and larger commercial loads. We offer a range of vehicle types so the choice is based on what the job actually needs rather than simply moving up to the biggest option.\n\nWhether you need a tail lift for boxed goods, a curtain side for easier loading access, a dropside for awkward materials or a tipper for site use, we help you make a practical choice. The aim is simple: a truck that suits the route, the payload and the working conditions on the day.",
+  mainServiceKicker: "Newark truck fleet",
+  mainServiceTitle: "Truck hire for serious carrying work from Newark",
+  mainServiceDescription: `Our truck hire service in Newark is designed for jobs that need more carrying capacity, easier loading or a more specialised body type than a standard van can offer. That can mean removals with heavier furniture, business stock movement, site materials, open-load transport or work that needs a tail lift, dropside or tipper setup. The point is to match the vehicle to the job rather than forcing the job into the wrong format.
+
+Newark is well placed for this sort of work because local carrying jobs often connect quickly to the A46, A17 and A1. A truck that feels manageable from the loading point but still useful once the route widens out can make the whole job easier to run. We keep the range practical so the booking stays focused on what the load actually needs.`,
   mainVehicles: [
-    { body: "The Ford Luton 3.5 ton Tail Box Lift Truck is ideal for house moves, bulky goods and appliance transport where rear lift support makes loading easier.", alt: "Ford Luton 3.5 ton tail box lift truck for hire in Newark" },
-    { body: "The 3.5 Tonne Tipper Transit Truck is a practical choice for site clearance, loose materials, landscaping work and building jobs.", alt: "3.5 tonne tipper transit truck for site work in Newark" },
-    { body: "The 3.5 Tonne Recovery Truck suits vehicle transport and recovery tasks where secure loading and stable carriage are essential.", alt: "3.5 tonne recovery truck available in Newark" },
-    { body: "The 7.5 Tonne Box Truck With Tail Lift works well for larger deliveries, stock movement and removals support with easier rear loading.", alt: "7.5 tonne box truck with tail lift for Newark deliveries" },
-    { body: "The 7.5 Tonne Curtain Side Truck is well suited to pallet work and trade deliveries where side access speeds up loading and unloading.", alt: "7.5 tonne curtain side truck for loading access in Newark" },
-    { body: "The 7.5 Tonne Dropside Truck is useful for building materials, site equipment and awkward loads that benefit from open-sided access.", alt: "7.5 tonne dropside truck for materials transport in Newark" },
-    { body: "The 7.5 Tonne Tipper Truck is built for more demanding site work, waste movement and bulk material jobs that need higher carrying capacity.", alt: "7.5 tonne tipper truck for heavy site tasks in Newark" },
-    { body: "The 7.5 Tonne Sleeper Tail Lift Truck is suited to longer working runs where loading support and added driver practicality are both useful.", alt: "7.5 tonne sleeper tail lift truck for regional runs from Newark" },
-    { body: "The 18 Tonne Box Truck is designed for larger enclosed loads, distribution work and substantial stock movement.", alt: "18 tonne box truck for major commercial transport in Newark" },
-    { body: "The 18 Tonne Curtain Side Truck is a strong option for pallet networks, larger deliveries and trade loads needing side access.", alt: "18 tonne curtain side truck for freight movement in Newark" },
-    { body: "The 26 Tonne Curtain Side Truck suits higher-volume transport where larger payload capacity and side loading are both important.", alt: "26 tonne curtain side truck for major transport jobs in Newark" },
-    { body: "The 44 Tonne Sleeper Truck is designed for substantial haulage tasks where long-distance work and serious carrying capability are required.", alt: "44 tonne sleeper truck for long haul work from Newark" },
+    { body: "A practical Luton-style truck with tail lift that suits removals support, furniture movement and larger boxed loads.", alt: "Ford Luton tail-lift truck for self-drive hire in Newark" },
+    { body: "The 3.5 tonne tipper is useful for site materials, waste, landscaping jobs and heavier loose loads that need an open body.", alt: "3.5 tonne tipper truck for working hires in Newark" },
+    { body: "A 3.5 tonne recovery truck for planned vehicle movement and specialist carrying work that needs a dedicated setup.", alt: "3.5 tonne recovery truck available in Newark" },
+    { body: "The 7.5 tonne box truck with tail lift gives you more carrying space for commercial loads, event stock and heavier removals support.", alt: "7.5 tonne box truck with tail lift for hire in Newark" },
+    { body: "A 7.5 tonne curtain-side truck that works well for palletised or side-loaded goods where faster access helps.", alt: "7.5 tonne curtain-side truck for commercial transport in Newark" },
+    { body: "The 7.5 tonne dropside is useful for awkward materials and open loading jobs that do not suit an enclosed body.", alt: "7.5 tonne dropside truck available for hire in Newark" },
+    { body: "A 7.5 tonne tipper for heavier site and waste work where loose load handling matters as much as overall carrying capacity.", alt: "7.5 tonne tipper truck for site jobs in Newark" },
+    { body: "The sleeper tail-lift option is there for longer-distance or more demanding carrying jobs that need a more substantial setup.", alt: "7.5 tonne sleeper tail-lift truck for longer transport work in Newark" },
+    { body: "An 18 tonne box truck for larger commercial movements, stock transfers and substantial enclosed loads.", alt: "18 tonne box truck for self-drive commercial hire in Newark" },
+    { body: "An 18 tonne curtain-side truck for easier side access on larger carrying jobs and pallet work.", alt: "18 tonne curtain-side truck available for hire in Newark" },
+    { body: "The 26 tonne curtain-side is suited to bigger distribution-style jobs where capacity and side loading both matter.", alt: "26 tonne curtain-side truck for larger commercial transport in Newark" },
+    { body: "A 44 tonne sleeper truck for specialist heavy transport work where a much larger road-going vehicle is required.", alt: "44 tonne sleeper truck for specialist heavy transport from Newark" },
   ],
-  whyChooseKicker: "Why choose us",
-  whyChooseTitle: "Truck hire guided by the job, not guesswork",
-  whyChooseDescription: "Truck hire only works well when the details are right. Load shape, weight, unloading method, route access and site conditions all matter. We help customers in Newark think through those practical points so the vehicle suits the task properly and the job can move forward with fewer problems on the day.",
+  whyChooseKicker: "Why hire from us",
+  whyChooseTitle: "A practical truck-hire service for demanding work",
+  whyChooseDescription: "Truck hire only works well when the vehicle actually suits the load, the access points and the route. We keep Newark truck bookings practical by focusing on those real details from the start.",
   whyChooseItems: [
-    { title: "Useful truck choice", body: "We offer a broad truck range so you can choose based on access, load type and unloading needs rather than guessing what might work." },
-    { title: "Body styles for specific tasks", body: "Box, curtain side, dropside, tipper and tail lift options are available for very different kinds of work." },
-    { title: "Access and route awareness", body: "We help you think through route restrictions, yard access and collection points before the vehicle is booked." },
-    { title: "Fit for the load", body: "Loads differ in shape, weight and handling method, so we focus on matching the truck to the practical demands of the job." },
-    { title: "Local and regional capability", body: "From local Newark work to wider regional transport, our truck hire service supports jobs that need dependable carrying capacity." },
-    { title: "Support beyond trucks", body: "If the task changes and a van or another vehicle type is more suitable, we can help through the wider self-drive fleet." },
+    { title: "Useful specialist options", body: "Tail lifts, dropsides, tippers and recovery transport are available when a normal van setup is not enough for the job." },
+    { title: "Load-led vehicle choice", body: "We focus on the shape, weight and handling of the load, not just on booking the biggest vehicle available." },
+    { title: "Practical route matching", body: "A truck that works well for local loading still needs to feel sensible once the route opens onto the A46, A17 or A1." },
+    { title: "Support for commercial and one-off work", body: "The fleet is useful for both business transport and one-off practical jobs such as moves, collections and specialist carrying work." },
+    { title: "Good local positioning", body: "Newark is well placed for local transport, construction support and wider Nottinghamshire or Lincolnshire carrying work." },
+    { title: "Straightforward booking support", body: "We aim to keep the hire clear and useful so you can focus on the transport job itself rather than untangling vague options." },
   ],
-  featureCtaTitle: "Talk through the load before you book",
-  featureCtaDescription: "If the job needs more than a van, we can help you choose a truck that matches the load, access conditions and route plan across Newark and beyond.",
-  serviceAreasKicker: "Areas we serve",
-  serviceAreasTitle: "Truck hire coverage around Newark and nearby areas",
-  serviceAreasDescription: "We support truck hire from Newark into surrounding towns, industrial areas and regional routes, helping with transport jobs that need more capacity and the right body type.",
-  localRelevanceKicker: "Operational guidance",
-  localRelevanceTitle: "Truck hire that fits the route, the load and the job in Newark",
-  localRelevanceDescription: "Truck hire in Newark needs a practical approach because the jobs vary so widely. Some customers need a straightforward box vehicle for removals support or stock movement. Others need a curtain side for easier loading, a dropside for awkward materials, or a tipper for site work. The right truck depends on what you are moving, how it will be loaded and where it needs to go.\n\nNewark also sits on useful regional routes, which makes it a strong base for commercial transport. Whether the journey stays local or heads out along the M6, M58 or A49 corridors, choosing the correct size and body style helps avoid access problems and makes loading more efficient. We focus on fit for purpose rather than one-size-fits-all truck hire.",
+  featureCtaTitle: "Need truck hire in Newark?",
+  featureCtaDescription: "Tell us what needs moving, how it loads and what route is involved and we will help you choose a practical truck for the job.",
+  serviceAreasKicker: "Areas we cover",
+  serviceAreasTitle: "Truck hire from Newark and surrounding routes",
+  serviceAreasDescription: "We support truck hire from Newark across nearby towns and wider regional routes, making it easier to cover heavier transport jobs from one practical base.",
+  localRelevanceKicker: "Local truck hire guidance",
+  localRelevanceTitle: "Why truck hire works well from Newark",
+  localRelevanceDescription: `Truck hire in Newark is usually about practical load movement rather than distance alone. A day might begin with awkward loading at a property, business unit or site entrance, then widen quickly onto the A46, A17 or A1 for the main carrying leg. That is why the body type matters just as much as the route.
+
+A tail lift can make removals and appliance movement more manageable. A dropside helps with access to building and landscaping materials. A tipper saves time on loose loads and waste. Around Newark, where local and regional carrying often happen in the same booking, the right truck choice keeps the day running more smoothly.`,
   localRelevanceBlocks: [
-    { title: "Routing trucks around Newark", body: "Newark is well connected for truck movements, but route choice matters. Jobs heading toward the M6, M58 or A580 can be straightforward with the right vehicle, while urban collections nearer the town centre may need tighter planning around access, loading bays and turning space. The more accurately the route is understood at the start, the easier it is to match the truck to the job.\n\nThat is especially important for deliveries into mixed environments where industrial estates, retail areas and residential roads all sit close together. A truck that is ideal for open motorway work may be less suitable if the delivery point has restricted yard space or awkward unloading conditions." },
-    { title: "Matching the body type to the task", body: "Truck choice is not just about carrying more. A Luton with tail lift may suit furniture, boxed stock or appliances, while a curtain side can be the better option for side loading on trade jobs. Tippers and dropsides are often more practical for site work, loose materials and jobs with frequent loading and unloading points.\n\nIf you are collecting from one of Newark's industrial areas or delivering into active commercial premises, think about the handling method before the journey starts. Forklift access, handball unloading, pallet movement and loading height all affect which vehicle body works best." },
-    { title: "Planning for loading and access", body: "The busiest truck jobs are usually the ones with the least room for delay. If your route involves timed collections, warehouse drop-offs or site access windows, it helps to confirm dimensions, vehicle type and unloading requirements before the day itself. That reduces wasted trips and avoids turning up with a truck that does not fit the task.\n\nFor work around Newark and onward regional runs, a clear plan saves time. Tell us whether the load is palletised, long, loose, fragile or heavy, and whether access is open yard, roadside or restricted entrance. We can then help steer you toward a truck that makes the job run more smoothly." },
+    {
+      title: "Choosing the right truck for local loading points",
+      body: `Many Newark truck bookings start at locations where access and loading are not especially generous. That could be a residential move, a business unit collection or a site job with awkward approach angles.
+
+Choosing the right body type from the start is often what makes the load manageable rather than frustrating.`,
+    },
+    {
+      title: "A practical fit for A46, A17 and A1 carrying work",
+      body: `Once the route leaves Newark itself, the A46, A17 and A1 often become part of the job. The vehicle therefore needs to feel workable not just at the loading point but across the full carrying route.
+
+That is why we keep the fleet focused on practical specialist options rather than generic oversized answers.`,
+    },
+    {
+      title: "Useful for removals, site work and specialist transport",
+      body: `Newark truck hire is commonly used for moves, heavier deliveries, building materials, waste, site support and vehicle transport. Those jobs all demand slightly different truck setups.
+
+Matching the truck properly from the start usually saves far more time than trying to make one body type cover every kind of load.`,
+    },
   ],
-  bottomCtaTitle: "Need the right truck for a serious load?",
-  bottomCtaDescription: "Tell us about the load, the route and the type of access involved. We will help you arrange truck hire in Newark that suits the job properly.",
-  faqKicker: "Truck hire questions",
-  faqTitle: "Newark truck hire FAQs",
+  bottomCtaTitle: "Book truck hire in Newark with practical guidance",
+  bottomCtaDescription: "If you need a truck in Newark for heavier transport, removals or site work, get in touch and we will help you line up a vehicle that fits the job properly.",
+  faqKicker: "Truck hire FAQs",
+  faqTitle: "Common questions about truck hire in Newark",
   faqs: [
-    { question: "How do I choose the right truck for a job in Newark?", answer: "Start with the load type, access at both ends and whether you need a tail lift, curtain side, dropside or tipper body. We can help narrow it down." },
-    { question: "Do I need a special licence for truck hire?", answer: "Some trucks require the correct licence entitlement, depending on the vehicle class. Ask us before booking and we will explain what applies to the truck you need." },
-    { question: "When is a tail lift truck the best option?", answer: "A tail lift is useful when loading pallets, bulky goods, appliances or heavier items where ground-level loading is not practical." },
-    { question: "Can I hire a truck in Newark for business use?", answer: "Yes, truck hire in Newark is often used for site work, deliveries, removals support and commercial transport across local and regional routes." },
-    { question: "Are all loads suitable for every truck type?", answer: "That depends on the vehicle body and your load. Curtain side, box, tipper and dropside trucks all suit different kinds of work, so it is best to check in advance." },
-    { question: "What information should I have ready when arranging truck hire?", answer: "Have the collection point, delivery point, load details and any site restrictions ready. That helps us guide you to the most suitable truck more quickly." },
+    { question: "What kinds of jobs is truck hire in Newark useful for?", answer: "Common Newark truck bookings include removals, heavier deliveries, site materials, waste movement, open loads and planned vehicle transport." },
+    { question: "How do I choose the right truck in Newark?", answer: "The key details are what you are moving, how the load needs to be handled, what the loading point is like and whether the route is mainly local or includes larger road mileage." },
+    { question: "Do you offer tail-lift and specialist truck options in Newark?", answer: "Yes. Depending on availability we can help with tail-lift trucks, dropsides, tippers and recovery-style vehicle transport options." },
+    { question: "Is truck hire in Newark useful for business work?", answer: "Yes. Many Newark truck bookings are for commercial transport, stock movement, building materials, site support and other practical business loads." },
+    { question: "Can I arrange truck hire in Newark at short notice?", answer: "Yes, subject to availability. If the job is coming up soon, call us and we will talk through the vehicle options that best fit the load." },
+    { question: "What should I tell you when booking a truck in Newark?", answer: "The most useful details are the type of load, the loading method, whether access is awkward, the route involved and whether a specialist body such as a tail lift or tipper would make the job easier." },
   ],
 }
 
-const location1Tokens: ContentTokenSet = {
-  metadata: { title: "Compact Car Hire Lincoln | Self-Drive Vehicle Hire", description: "Compact car hire in Lincoln for local driving, station pickups and regional travel, with larger cars, vans, minibuses and trucks also available." },
-  heroImage: "/images/nearby_location_image_1.jpeg",
-  heroAlt: "Compact hire car near a town-centre route in Lincoln",
-  heroTitle: "Compact car hire in Lincoln",
-  heroDescription: "Compact car hire in Lincoln for town driving, commuting, station pickups and straightforward regional travel, with larger vehicle options available when needed.",
-  heroSecondaryActionLabel: "Check Lincoln vehicles",
-  mainServiceKicker: "Lincoln compact hire",
-  mainServiceTitle: "Self-drive compact cars for Lincoln travel",
-  mainServiceDescription: "We provide compact car hire in Lincoln for customers who want a practical self-drive vehicle that suits everyday travel. Whether you need a car for local errands, a temporary replacement, a station pickup or a business journey, a compact model gives you the right balance of convenience, comfort and manageable size.\n\nSmaller cars are often the easiest option for Lincoln roads because they are simpler to park and less cumbersome in busier areas. They also work well for short motorway stretches and regional routes, so you are not limited to town driving alone. If you prefer an automatic or want slightly more space, we can help guide you through the best available options.\n\nWe also offer a wider fleet beyond compact cars. So while the Lincoln page is led by small car hire, customers can still move into estates, larger cars, SUVs, vans, minibuses or trucks when the journey calls for it.",
-  mainVehicles: [
-    { body: "The Fiat 500 is a strong option for Lincoln town journeys where easy parking and simple local driving are the main priority.", alt: "Fiat 500 compact hire car for Lincoln town driving" },
-    { body: "A useful automatic for Lincoln drivers who want a small, stress-free car for local roads, errands and short regional trips.", alt: "Hyundai i10 automatic compact hire car in Lincoln" },
-    { body: "The Golf gives Lincoln customers a bit more room and motorway comfort while keeping the practical feel of a compact hatchback.", alt: "Volkswagen Golf hatchback for hire in Lincoln" },
-    { body: "Ideal when you want automatic convenience in Lincoln with enough space and comfort for longer drives as well as daily use.", alt: "Ford Focus automatic self-drive hire in Lincoln" },
-  ],
-  whyChooseKicker: "Why choose us in Lincoln",
-  whyChooseTitle: "Straightforward compact car hire for Lincoln drivers",
-  whyChooseDescription: "Lincoln customers often want a hire car that feels easy to arrange and sensible to use. We focus on practical compact vehicles, clear advice and a wider fleet that can support you if the job turns into something bigger than a small car trip.",
-  whyChooseItems: [
-    { title: "Built for everyday Lincoln trips", body: "Our Lincoln compact car options suit everyday use, from local appointments and family visits to station runs and regional mileage." },
-    { title: "Easy to manage locally", body: "Smaller cars make life easier in busier parts of Lincoln where parking, turning and stop-start traffic can all slow bigger vehicles down." },
-    { title: "Clear, helpful guidance", body: "We keep the hire process clear so Lincoln customers can quickly understand which vehicle best fits the journey." },
-    { title: "A fleet that can adapt", body: "If your plans change in Lincoln, we can help you move from a compact car to something with more room or a different layout." },
-    { title: "Automatic choices available", body: "Automatic options are available within the wider range for Lincoln drivers who want a simpler, more relaxed drive." },
-    { title: "Wider vehicle hire support", body: "Beyond compact cars, Lincoln customers can also arrange vans, minibuses and trucks through the same self-drive provider." },
-  ],
-  additionalServicesKicker: "More vehicle hire options in Lincoln",
-  additionalServicesTitle: "Extra vehicle options for Lincoln journeys",
-  additionalServicesDescription: "If you need more room than a compact hatchback in Lincoln, we also offer larger cars, estates, SUVs and premium automatics, along with vans, minibuses and trucks for wider transport needs.",
-  additionalVehicles: [
-    { body: "A practical choice in Lincoln when you want everyday car handling with extra space for cases, work gear or shopping.", alt: "Ford Focus Estate for added luggage space on Lincoln hires" },
-    { body: "Well suited to longer Lincoln journeys where comfort, cabin room and motorway ease matter more than a smaller footprint.", alt: "Ford Mondeo saloon for comfortable road travel from Lincoln" },
-    { body: "Useful for Lincoln drivers who want a larger automatic car for business travel, family use or longer regional mileage.", alt: "Ford Mondeo automatic available for hire in Lincoln" },
-    { body: "A good fit for Lincoln airport runs, family trips and any journey where passengers and luggage both need proper space.", alt: "Ford Mondeo Estate with extra boot space for Lincoln travel" },
-    { body: "The RAV4 Auto gives Lincoln drivers a higher seating position and useful cabin space for mixed town and motorway use.", alt: "Toyota RAV4 automatic SUV hire for flexible Lincoln driving" },
-    { body: "A refined option for Lincoln business travel, client meetings and occasions where a more premium drive is preferred.", alt: "Mercedes C Class automatic for executive hire in Lincoln" },
-    { body: "The E Class Auto suits longer Lincoln journeys where extra comfort and a more spacious executive interior are helpful.", alt: "Mercedes E Class automatic executive car hire in Lincoln" },
-    { body: "For Lincoln trips that call for more presence, comfort and room, the Range Rover offers a strong premium SUV option.", alt: "Range Rover SUV hire for premium travel in Lincoln" },
-  ],
-  featureCtaTitle: "Need a practical hire car in Lincoln?",
-  featureCtaDescription: "Need a compact hire car in Lincoln without overcomplicating the process? Contact us and we will help you check the available options.",
-  serviceAreasKicker: "Coverage around Lincoln",
-  serviceAreasTitle: "Vehicle hire serving Lincoln and nearby areas",
-  serviceAreasDescription: "We cover Lincoln and surrounding routes with practical self-drive hire, helping customers who need compact cars as well as larger vehicle options.",
-  localRelevanceKicker: "Driving in Lincoln",
-  localRelevanceTitle: "Why compact car hire works well in Lincoln",
-  localRelevanceDescription: "Lincoln works well for compact car hire because so many everyday journeys mix town-centre access with quick links out towards surrounding routes. A smaller car is practical for getting around the busier parts of Lincoln, handling station pickups, retail trips and work travel without the bulk of a larger vehicle. It also suits drivers heading between residential areas, business parks and local appointments where easy manoeuvrability matters.\n\nFrom Lincoln town centre, routes such as the A666 St Peter's Way and connections towards the M61 make it straightforward to head wider across the area. For drivers collecting a car for commuting, visiting family, or short regional travel, a compact model keeps things simple in traffic, easier in car parks and comfortable for longer stretches when needed. Lincoln customers also regularly ask about vans, minibuses and trucks, so the wider fleet is there when the journey calls for more space or carrying capacity.",
-  localRelevanceBlocks: [
-    { title: "A sensible choice for Lincoln road patterns", body: "Lincoln suits compact cars particularly well because many journeys move between town-centre traffic, local neighbourhoods and quick access routes out towards surrounding roads. A smaller hatchback makes everyday driving simpler when you are dealing with tight parking, short errands or back-to-back appointments.\n\nRoutes such as the A666 and A58 keep traffic flowing in and out of Lincoln, but once you are near busier central areas, having a car that is easy to position becomes far more useful than having extra size you do not need. For many customers, compact simply feels more practical." },
-    { title: "Helpful around central Lincoln and station trips", body: "Lincoln town centre, retail areas and station access points can all reward a smaller vehicle. If your day involves collecting someone, heading into meetings or fitting in several local stops, compact car hire keeps the trip straightforward without making parking or manoeuvring harder than it needs to be.\n\nThat is especially helpful if you are travelling around the station area or heading towards places where quick access matters more than load space. A car like the Fiat 500 or Hyundai i10 Auto is often all you need for those kinds of Lincoln journeys." },
-    { title: "Think ahead before choosing your Lincoln vehicle", body: "Not every Lincoln journey is strictly local, so it helps to match the vehicle to the full day rather than only the first stop. A compact car is ideal for routine travel, but if you expect more luggage, more passengers or a longer motorway run, a Golf or Focus Auto may be the better fit.\n\nWe also keep larger vehicles available for customers in Lincoln who realise a small car is not enough after all. Estates, SUVs, vans, minibuses and trucks are all part of the wider fleet, so changing plans does not have to mean starting the search again elsewhere." },
-  ],
-  bottomCtaTitle: "Arrange compact car hire in Lincoln",
-  bottomCtaDescription: "If you need a small hire car in Lincoln for local driving, station access or a longer run, get in touch and we will help you choose the right vehicle.",
-  faqKicker: "Lincoln hire questions",
-  faqTitle: "FAQs about compact car hire in Lincoln",
-  faqs: [
-    { question: "Is a compact car a good choice for driving in Lincoln?", answer: "Compact car hire in Lincoln suits busy local roads, town-centre parking and everyday trips where a smaller vehicle is easier to manage." },
-    { question: "What do people usually hire compact cars for in Lincoln?", answer: "Yes, Lincoln customers often use compact hire cars for station collections, shopping trips, family visits, temporary cover and regional travel." },
-    { question: "Can I get an automatic hire car in Lincoln?", answer: "Yes, subject to availability. If you want an easier drive in Lincoln traffic or on longer runs, ask about our automatic options." },
-    { question: "Do you offer larger vehicles alongside compact car hire in Lincoln?", answer: "If you need more space than a compact car in Lincoln, we can also help with estates, larger saloons, SUVs, vans, minibuses and trucks." },
-    { question: "Can I arrange last-minute car hire in Lincoln?", answer: "Yes, we can often help with short-notice compact car hire in Lincoln when a suitable vehicle is available. Calling ahead is the best way to check." },
-    { question: "What do I need to collect my hire car in Lincoln?", answer: "For Lincoln hire, bring your driving licence and your booking details. If anything else is needed, we will confirm it before collection." },
-  ],
-}
+const location1Tokens = createNearbyLocationTokens({
+  location: "Lincoln",
+  heroImage: "/images/compactcarhirenewark-co-uk-nearby-location-fleet-a.png",
+  heroAlt: "Compact hire car prepared for city and regional travel in Lincoln",
+  metadataDescription: "Compact car hire in Lincoln for city driving, station access and regional mileage using the A46, A15 and Lincoln ring-road links.",
+  heroDescription: "Compact car hire in Lincoln for city-centre driving, station collections, business mileage and practical regional travel when you want something easy to manage.",
+  serviceDescription: `Compact car hire in Lincoln is often the practical answer when the journey includes city traffic, ordinary parking and repeated short stops. A smaller vehicle keeps those everyday pressures easier to manage while still being comfortable enough for wider mileage using routes such as the A46 and A15.
 
-const location2Tokens: ContentTokenSet = {
-  metadata: { title: "Compact Car Hire Mansfield | Self-Drive Vehicle Hire", description: "Compact car hire in Mansfield for local trips, station travel, business use, and everyday driving. Vans, minibuses, and trucks also available." },
-  heroImage: "/images/nearby_location_image_2.jpeg",
-  heroAlt: "Compact hire car on a suburban road in Mansfield",
-  heroTitle: "Compact car hire in Mansfield",
-  heroDescription: "Compact car hire in Mansfield for local trips, station runs, business travel, and everyday journeys. Easy self-drive options with larger vehicles available too.",
-  heroSecondaryActionLabel: "View Mansfield vehicles",
-  mainServiceKicker: "Mansfield self-drive hire",
-  mainServiceTitle: "Straightforward compact car hire for Mansfield journeys",
-  mainServiceDescription: "Our compact car hire service in Mansfield is built for practical day to day travel. Whether you need a small car for local appointments, a reliable vehicle while your own is off the road, or something easy to drive for business and personal use, we can help you choose a suitable option.\n\nCompact cars are a natural fit for Mansfield because they are easy to park, comfortable on short and medium journeys, and well suited to town traffic as well as wider North West routes. We also offer automatic options and a broader self-drive range including vans, minibuses, and trucks, so you can keep everything with one provider if your plans change.",
-  mainVehicles: [
-    { body: "The Fiat 500 is ideal for Mansfield drivers who want a compact, easy to park car for local errands, short commutes, and simple everyday travel.", alt: "Fiat 500 hire car for compact driving in Mansfield" },
-    { body: "A Hyundai i10 Auto makes Mansfield town driving easy, with the convenience of automatic transmission and a size that suits tighter parking spots.", alt: "Hyundai i10 automatic available for hire in Mansfield" },
-    { body: "The VW Golf is a strong all rounder for Mansfield, giving you extra comfort and space for longer drives while staying manageable around town.", alt: "VW Golf self-drive hire option in Mansfield" },
-    { body: "If you want automatic driving with everyday practicality, the Focus Auto suits Mansfield business use, family journeys, and regular regional travel.", alt: "Ford Focus automatic hire car in Mansfield" },
-  ],
-  whyChooseKicker: "Why Mansfield drivers choose us",
-  whyChooseTitle: "A practical choice for Mansfield vehicle hire",
-  whyChooseDescription: "Hiring a car in Mansfield should feel simple, not overcomplicated. We focus on practical vehicles, clear communication, and helping customers choose something that suits the roads they will actually be driving. That might mean a small city-friendly car, an automatic for easier stop start traffic, or a larger option when the journey needs more space.",
-  whyChooseItems: [
-    { title: "Town-friendly vehicles", body: "Our Mansfield car hire range is centred on vehicles that are easy to live with on typical local journeys." },
-    { title: "Practical journey matching", body: "Whether you need a car for a quick local run or a longer journey, we help match the booking to the travel plan." },
-    { title: "Automatic options available", body: "Automatic compact cars are available for Mansfield drivers who want an easier drive in busier traffic." },
-    { title: "Wider fleet when needed", body: "If you need more room than a compact car offers, we can also help with larger cars and wider vehicle types." },
-    { title: "Useful for many journey types", body: "The service suits personal travel, commuting, business use, and temporary replacement vehicle needs around Mansfield." },
-    { title: "Helpful booking support", body: "You can speak to us directly to check availability and narrow down the most suitable vehicle for Mansfield travel." },
-  ],
-  additionalServicesKicker: "More vehicle hire options in Mansfield",
-  additionalServicesTitle: "Extra fleet options for Mansfield travel",
-  additionalServicesDescription: "If a compact car is not quite enough for your plans in Mansfield, we also offer larger cars, estates, SUVs and premium automatics, plus vans, minibuses and trucks.",
-  additionalVehicles: [
-    { body: "Useful in Mansfield when you want the feel of a car but need a larger boot for bags, equipment or shopping.", alt: "Ford Focus Estate for practical luggage space on Mansfield hires" },
-    { body: "A comfortable larger car for Mansfield drivers making longer regional or motorway journeys.", alt: "Ford Mondeo saloon for longer journeys from Mansfield" },
-    { body: "A practical automatic option in Mansfield for customers who want extra room and a more relaxed drive.", alt: "Ford Mondeo automatic available for hire in Mansfield" },
-    { body: "Well suited to Mansfield airport journeys, family travel and trips where luggage space matters.", alt: "Ford Mondeo Estate with generous boot space for Mansfield travel" },
-    { body: "A RAV4 Auto gives Mansfield drivers extra ride height and easy automatic driving for longer trips, family travel, and mixed urban and motorway use.", alt: "Toyota RAV4 automatic SUV hire in Mansfield" },
-    { body: "The C Class Auto suits Mansfield business travel, client visits, and comfortable regional journeys when you want a more refined drive.", alt: "Mercedes C Class automatic available for hire in Mansfield" },
-    { body: "An E Class Auto is a strong choice in Mansfield for executive travel, airport runs, and longer journeys where comfort matters.", alt: "Mercedes E Class automatic hire option in Mansfield" },
-    { body: "For Mansfield drivers needing space, presence, and a higher driving position, the Range Rover fits family trips, events, and longer road journeys.", alt: "Range Rover available for self-drive hire in Mansfield" },
-  ],
-  featureCtaTitle: "Check Mansfield vehicle availability",
-  featureCtaDescription: "Need a car for local travel in Mansfield or a journey further afield? Get in touch and check which vehicles are available for your dates.",
-  serviceAreasKicker: "Around Mansfield",
-  serviceAreasTitle: "Vehicle hire around Mansfield and nearby routes",
-  serviceAreasDescription: "We support Mansfield and surrounding areas with compact car hire, while also offering access to vans, minibuses, and trucks when a different vehicle suits the job better.",
-  localRelevanceKicker: "Driving in Mansfield",
-  localRelevanceTitle: "Why compact car hire works well in Mansfield",
-  localRelevanceDescription: "Mansfield is the kind of place where a compact hire car makes immediate sense. Local driving can include town centre calls, retail trips, work appointments, school runs, and short notice travel, all mixed into one day. A smaller vehicle keeps those journeys easy to manage while still being comfortable enough for trips beyond town.\n\nIt also works well for people travelling in and out of Mansfield for work, family visits, or onward connections. With practical road links across the wider area, compact car hire gives you enough flexibility for local movement without making parking and manoeuvring harder than it needs to be.",
-  localRelevanceBlocks: [
-    { title: "A good fit for everyday Mansfield driving", body: "Driving around Mansfield is usually straightforward when you pick a car that suits everyday local roads. Compact models are especially useful if your route includes the town centre, residential streets, or regular stops through areas where parking space can be tighter than expected.\n\nIf your day takes you towards the A58, the East Lancashire Road corridor, or links out towards Rainford and Haydock, a smaller car keeps things simple. It is often the sensible choice for a mix of errands, work appointments, and short regional drives." },
-    { title: "Useful for station links and onward routes", body: "Mansfield journeys often combine local access with wider travel, especially for people connecting to rail services, retail parks, and business addresses. A compact car works well if you are moving between the station area, retail trips, and onward routes without wanting the bulk of a larger vehicle.\n\nFor drivers heading towards the M62 or making regular trips across Merseyside and the North West, keeping the vehicle manageable matters. You still get enough comfort for longer runs, while making town parking and repeat stops less of a chore." },
-    { title: "Easy to scale up if your plans change", body: "Not every Mansfield booking is just about a small car. Sometimes plans shift from a simple local run to carrying more passengers or more load space than expected. That is why it helps to use a hire company that can also assist with vans, minibuses, and trucks when needed.\n\nIf you start with compact car hire in Mansfield but realise the job is bigger, it is easier to adjust when the wider fleet is available. That keeps your travel plans practical without overcomplicating the booking." },
-  ],
-  bottomCtaTitle: "Book your Mansfield hire vehicle",
-  bottomCtaDescription: "If you need compact car hire in Mansfield, talk to our team and we will help you find a practical vehicle for the journey ahead.",
-  faqKicker: "Mansfield hire questions",
-  faqTitle: "Compact car hire FAQs for Mansfield",
-  faqs: [
-    { question: "Can I arrange compact car hire in Mansfield at short notice?", answer: "Yes, we can help arrange compact car hire for Mansfield when you need a practical vehicle for local driving, station journeys, or onward travel. Availability depends on the vehicle and timing, so it is best to check with us directly." },
-    { question: "Why choose a compact car for driving in Mansfield?", answer: "Compact cars are often a good fit for Mansfield because they are easier to park, simple to handle on local roads, and well suited to everyday journeys around town and beyond." },
-    { question: "Do you offer automatic cars for Mansfield hires?", answer: "Yes, Mansfield customers can ask about automatic compact car options. They are especially useful for town driving, busier junctions, and stop start traffic." },
-    { question: "What kind of journeys are compact hire cars used for in Mansfield?", answer: "Many Mansfield bookings are for local appointments, visiting family, temporary vehicle cover, shopping trips, and rail connections, but the right car also works well for longer regional travel." },
-    { question: "Can I hire more than just a compact car in Mansfield?", answer: "Yes, alongside compact cars in Mansfield we also offer vans, minibuses, and trucks, so if your plans change we can help you look at a more suitable vehicle." },
-    { question: "How do I choose the right hire car for Mansfield travel?", answer: "When booking your Mansfield hire, tell us about passenger numbers, luggage, whether you want manual or automatic, and the type of journey you are planning. That helps us suggest the best option." },
-  ],
-}
+That balance is useful across a city like Lincoln where the booking may start around the station, the city centre or a business visit, then widen out into regional travel. Compact cars stay flexible without feeling larger than the job really needs.`,
+  whyChooseDescription: "Lincoln compact car hire works best when the vehicle stays easy to place in busier city traffic but still comfortable enough once the route opens up. That is the balance we keep in view.",
+  serviceAreasDescription: "We support compact car hire in Lincoln and across nearby city and regional routes, including station access, city-centre driving and onward A46 or A15 travel.",
+  localRelevanceDescription: `Lincoln is exactly the sort of city where compact cars make everyday sense. Busier urban roads, station access, tighter parking and repeated short stops all favour a smaller vehicle that is easy to slot into the flow of the day.
 
-const location3Tokens: ContentTokenSet = {
-  metadata: { title: "Compact Car Hire Nottingham | Self-Drive Vehicle Hire", description: "Compact car hire in Nottingham for commuting, local trips, station travel, and business use. Wider self-drive options include vans, minibuses, and trucks." },
-  heroImage: "/images/nearby_location_image_1.jpeg",
-  heroAlt: "Compact hire car on a commuter-style road near Nottingham town centre",
-  heroTitle: "Compact car hire in Nottingham made simple",
-  heroDescription: "Compact car hire in Nottingham for commuting, shopping trips, local appointments, and onward travel. Practical self-drive vehicles with wider fleet options available.",
-  heroSecondaryActionLabel: "View Nottingham options",
-  mainServiceKicker: "Nottingham vehicle hire",
-  mainServiceTitle: "Compact car hire for everyday travel in Nottingham",
-  mainServiceDescription: "We provide compact car hire in Nottingham for customers who need a vehicle that is easy to drive, simple to park, and suitable for all kinds of everyday travel. Whether you are covering local appointments, sorting temporary transport, commuting, or heading out for a longer trip, we can help you choose a vehicle that fits.\n\nCompact cars are especially useful in Nottingham because they cope well with mixed driving patterns. You get the convenience needed for town use without giving up comfort for wider regional journeys. If you need something larger, our broader fleet includes bigger cars, vans, minibuses, and trucks.",
-  mainVehicles: [
-    { body: "The Fiat 500 is a neat option for Nottingham journeys where easy parking, short local trips, and simple town driving are the priority.", alt: "Fiat 500 compact hire car for Nottingham roads" },
-    { body: "A Hyundai i10 Auto suits Nottingham customers who want an automatic compact car for local travel, commuting, and everyday convenience.", alt: "Hyundai i10 automatic hire option in Nottingham" },
-    { body: "The VW Golf works well in Nottingham if you want a compact car with a little more cabin comfort for regular longer drives.", alt: "VW Golf self-drive vehicle available in Nottingham" },
-    { body: "For Nottingham business travel, family use, or regional journeys, the Focus Auto offers practical space with easy automatic driving.", alt: "Ford Focus automatic car hire in Nottingham" },
-  ],
-  whyChooseKicker: "Why Nottingham drivers choose us",
-  whyChooseTitle: "A practical self-drive option for Nottingham",
-  whyChooseDescription: "Nottingham customers usually want vehicle hire to be useful, not complicated. We keep the focus on practical self-drive options, sensible guidance, and cars that make day to day travel easier. That means helping you choose a vehicle based on the journey itself rather than pushing something unsuitable.",
-  whyChooseItems: [
-    { title: "Good everyday fit", body: "Our Nottingham compact cars are chosen for straightforward local use, comfortable driving, and everyday practicality." },
-    { title: "Journey-led advice", body: "We help Nottingham customers match the vehicle to the trip, whether that means town driving, commuting, or a longer run." },
-    { title: "Automatic cars available", body: "Automatic choices are available for Nottingham bookings where easier driving is the priority." },
-    { title: "Space when you need it", body: "If you need more room than a compact hatchback offers, we can guide you towards larger alternatives." },
-    { title: "Suitable for work or home", body: "Our Nottingham service works for both personal and business use, from local appointments to temporary cover." },
-    { title: "Straightforward support", body: "You can contact us directly to check vehicle suitability and availability for Nottingham travel plans." },
-  ],
-  additionalServicesKicker: "More than compact cars in Nottingham",
-  additionalServicesTitle: "Wider vehicle choice for Nottingham drivers",
-  additionalServicesDescription: "If your Nottingham journey needs more room, more comfort, or a higher spec vehicle, we can help with larger car options while still keeping the booking straightforward. We also offer vans, minibuses, and trucks for customers whose plans go beyond compact car hire.",
-  additionalVehicles: [
-    { body: "The Focus Estate is a useful step up for Nottingham customers needing extra boot space for luggage, work kit, or longer family journeys.", alt: "Ford Focus Estate hire vehicle for Nottingham travel" },
-    { body: "A Mondeo suits Nottingham drivers looking for a comfortable car for longer motorway runs, business travel, or day to day use with more cabin room.", alt: "Ford Mondeo available for self-drive hire in Nottingham" },
-    { body: "The Mondeo Auto offers added comfort for Nottingham journeys where automatic driving and extra interior space make the day easier.", alt: "Ford Mondeo automatic hire option in Nottingham" },
-    { body: "For Nottingham bookings that need both comfort and carrying space, the Mondeo Estate works well for extended trips, luggage, and everyday practicality.", alt: "Ford Mondeo Estate available for hire in Nottingham" },
-    { body: "A RAV4 Auto gives Nottingham drivers more space and a raised driving position for family travel, business trips, and longer regional journeys.", alt: "Toyota RAV4 automatic hire vehicle in Nottingham" },
-    { body: "The C Class Auto is a smart option in Nottingham for professional travel, client meetings, and comfortable journeys across the wider area.", alt: "Mercedes C Class automatic available for hire in Nottingham" },
-    { body: "An E Class Auto suits Nottingham customers who want a refined vehicle for executive travel, airport runs, or longer distance driving.", alt: "Mercedes E Class automatic self-drive hire in Nottingham" },
-    { body: "The Range Rover is well suited to Nottingham bookings where you want extra room, strong road presence, and comfort for family or event travel.", alt: "Range Rover hire option for Nottingham journeys" },
-  ],
-  featureCtaTitle: "Check available hire cars for Nottingham",
-  featureCtaDescription: "Planning a journey in Nottingham or heading further out on the main road network? Contact us to check available compact cars and larger alternatives.",
-  serviceAreasKicker: "Around Nottingham",
-  serviceAreasTitle: "Serving Nottingham and surrounding travel routes",
-  serviceAreasDescription: "Our vehicle hire service supports Nottingham and nearby routes with compact cars for daily travel, plus larger vehicles for customers who need more space or carrying capacity.",
-  localRelevanceKicker: "Nottingham travel guide",
-  localRelevanceTitle: "Why compact cars suit Nottingham so well",
-  localRelevanceDescription: "Nottingham drivers often need a car that can handle a bit of everything in the same day. That may mean local errands in town, work travel, family visits, or a run out onto the wider road network. Compact car hire suits that pattern well because it stays easy to handle while still covering longer trips comfortably.\n\nIt is also a sensible choice if parking, repeated stops, or busier local traffic are part of the journey. A smaller hire vehicle helps keep things straightforward, especially when your travel plan is practical rather than flashy.",
-  localRelevanceBlocks: [
-    { title: "Built for practical Nottingham journeys", body: "Nottingham is well suited to compact car hire because many journeys are short, mixed purpose, and spread across residential streets, local shops, and regular town centre stops. A smaller vehicle helps you stay flexible without making simple parking tasks harder than they need to be.\n\nIf your route takes you around the A580 East Lancashire Road corridor or through everyday local traffic, a compact car keeps the drive manageable. It is a good match for routine trips where convenience matters more than extra bulk." },
-    { title: "Useful around town and beyond", body: "For people travelling in and out of Nottingham for work, family commitments, or appointments, a compact hire car gives the right balance of economy of movement and comfort. You can cover local miles easily, then continue onto wider routes without feeling under-equipped.\n\nConnections towards the Atherleigh Way area and onward links around the town make a small, easy to place vehicle especially useful. If your day includes several stops rather than one straight run, compact size becomes a real advantage." },
-    { title: "Flexible options if plans change", body: "Nottingham bookings are not always the same from one customer to the next. Some need a compact car for commuting or temporary cover, while others start small and then realise they need estate space, a van, or a people carrying option.\n\nBecause we offer more than one type of vehicle, it is easier to keep your hire practical. If your Nottingham plans change, you are not locked into one narrow choice." },
-  ],
-  bottomCtaTitle: "Arrange your Nottingham car hire",
-  bottomCtaDescription: "Speak to us about compact car hire in Nottingham and we will help you find a vehicle that fits your route, passenger needs, and travel plans.",
-  faqKicker: "Nottingham FAQs",
-  faqTitle: "Questions about compact car hire in Nottingham",
-  faqs: [
-    { question: "What is compact car hire in Nottingham best suited to?", answer: "Compact car hire in Nottingham is a good option for local travel, commuting, family visits, and journeys connecting into surrounding routes. Smaller cars are often easier to park and simpler to manage on busy days." },
-    { question: "Can I book an automatic hire car in Nottingham?", answer: "Yes, automatic cars are available for Nottingham hires. They can be especially useful if you expect regular stop start traffic or simply prefer an easier driving experience." },
-    { question: "Why are compact cars a sensible choice for Nottingham drivers?", answer: "Nottingham has a mix of town driving, residential routes, and connections out towards major roads, so a compact vehicle gives you flexibility without feeling oversized for everyday use." },
-    { question: "Can I upgrade from a compact car for my Nottingham journey?", answer: "Yes, if your Nottingham booking needs more space for passengers or luggage, we can also help with larger cars and other vehicle types where suitable." },
-    { question: "Do you offer other vehicle hire services in Nottingham?", answer: "Alongside compact car hire in Nottingham, we also offer vans, minibuses, and trucks. That is useful if your requirements change after you first enquire." },
-    { question: "How do I pick the right hire car for Nottingham travel?", answer: "The best way to choose a Nottingham hire car is to think about passenger numbers, luggage, the length of the trip, and whether you want manual or automatic. We can help narrow it down." },
-  ],
-}
+At the same time, a Lincoln booking does not always stay local. Routes can widen quickly onto the A46, A15 and broader county links, so the vehicle still needs to feel settled once the city-centre stage is over. Compact hatchbacks usually strike that balance well.`,
+  localBlocks: [
+    { title: "Useful in busier city traffic", body: `Compact cars help take the pressure out of Lincoln city driving because they are easier to position in traffic and easier to park when the day involves several short stops.
 
-const location4Tokens: ContentTokenSet = {
-  metadata: { title: "Compact Car Hire Grantham | Vehicle Hire Grantham", description: "Compact car hire in Grantham for local travel, station runs and regional driving, with vans, minibuses and trucks also available when needed." },
-  heroImage: "/images/nearby_location_image_2.jpeg",
-  heroAlt: "Compact hire car on a business-travel route in Grantham",
-  heroTitle: "Compact Car Hire in Grantham",
-  heroDescription: "Compact car hire in Grantham for everyday travel, station pickups, business meetings and regional journeys. Easy-to-drive vehicles with support from a practical local team.",
-  heroSecondaryActionLabel: "View vehicle options",
-  mainServiceKicker: "Grantham compact car hire",
-  mainServiceTitle: "Practical car hire for Grantham journeys",
-  mainServiceDescription: "Compact car hire in Grantham suits everything from station runs and business travel to shopping trips and weekend plans. A smaller car is easy to handle around the town centre, residential streets and busy retail areas, while still being comfortable for longer journeys using the M6, M62 and A49. If you need a straightforward self-drive option for local travel in Grantham, we offer practical cars that are simple to park, economical on everyday mileage and well suited to solo drivers, couples and small families.",
-  mainVehicles: [
-    { body: "The Fiat 500 is a smart fit for Grantham town driving, short local trips and easy parking near busy central areas.", alt: "Fiat 500 compact hire car for Grantham" },
-    { body: "The Hyundai i10 Auto is ideal for drivers who want a small automatic for comfortable local travel around Grantham.", alt: "Hyundai i10 automatic hire car for Grantham" },
-    { body: "The VW Golf offers extra room and motorway confidence while still staying practical for everyday use in Grantham.", alt: "VW Golf hire car for Grantham travel" },
-    { body: "The Focus Auto suits mixed Grantham journeys, giving you automatic ease for commuting, business calls and regional runs.", alt: "Ford Focus automatic hire car in Grantham" },
-  ],
-  whyChooseKicker: "Why Grantham drivers call us",
-  whyChooseTitle: "A practical choice for compact car hire in Grantham",
-  whyChooseDescription: "Hiring a compact car in Grantham should feel practical, not overcomplicated. We focus on useful vehicles, clear guidance and a service that works for real journeys, whether you are travelling locally, heading out on business or connecting with wider routes across the region.",
-  whyChooseItems: [
-    { title: "Compact cars that fit the area", body: "Choose a smaller car that suits town driving, station access and everyday travel around Grantham." },
-    { title: "Straightforward vehicle guidance", body: "Our team helps match the vehicle to the journey so you are not left with more car than you need." },
-    { title: "Useful choice across the fleet", body: "Automatic and manual compact options make it easier to book a car you feel comfortable driving in Grantham." },
-    { title: "Ready for local and regional use", body: "From local errands to regional travel, our vehicles are suited to the mixed driving patterns common around Grantham." },
-    { title: "Wider hire options available", body: "If your plans expand beyond compact car hire in Grantham, we can also arrange larger vehicles from the same fleet." },
-    { title: "Easy to arrange", body: "We keep the process clear and practical so booking the right vehicle in Grantham feels simple." },
-  ],
-  additionalServicesKicker: "More than compact cars in Grantham",
-  additionalServicesTitle: "Broader vehicle choice for Grantham travel",
-  additionalServicesDescription: "Grantham journeys vary from local calls and station runs to business travel and longer motorway driving, so it helps to have more than one option. Alongside compact cars, we can help with larger cars plus vans, minibuses, and trucks where the journey calls for them.",
-  additionalVehicles: [
-    { body: "The Focus Estate gives Grantham drivers extra luggage room for business travel, family trips, and longer journeys without moving into a much larger vehicle.", alt: "Ford Focus Estate hire car for Grantham journeys" },
-    { body: "A Mondeo suits Grantham customers who want a comfortable car for regular motorway use, client visits, or longer day trips.", alt: "Ford Mondeo available for hire in Grantham" },
-    { body: "The Mondeo Auto is a practical choice in Grantham for drivers who want added cabin space and relaxed automatic driving.", alt: "Ford Mondeo automatic self-drive hire in Grantham" },
-    { body: "For Grantham travel that needs both passenger comfort and strong boot capacity, the Mondeo Estate is a dependable all round option.", alt: "Ford Mondeo Estate available for Grantham hire" },
-    { body: "A RAV4 Auto works well for Grantham drivers wanting a higher seating position, flexible space, and comfort for regional travel.", alt: "Toyota RAV4 automatic hire vehicle in Grantham" },
-    { body: "The C Class Auto is well suited to Grantham business use, executive travel, and professional journeys across the North West.", alt: "Mercedes C Class automatic available for hire in Grantham" },
-    { body: "An E Class Auto gives Grantham customers extra comfort for longer motorway routes, airport runs, and higher end travel needs.", alt: "Mercedes E Class automatic hire option in Grantham" },
-    { body: "The Range Rover suits Grantham bookings where you want generous space, a raised driving position, and strong comfort for family or event travel.", alt: "Range Rover available for self-drive hire in Grantham" },
-  ],
-  featureCtaTitle: "Need compact car hire in Grantham?",
-  featureCtaDescription: "If you need a practical compact car in Grantham, speak to our team and we will help you choose the right vehicle for local trips, business travel or onward journeys.",
-  serviceAreasKicker: "Around Grantham",
-  serviceAreasTitle: "Vehicle hire in and around Grantham",
-  serviceAreasDescription: "We provide compact car hire across Grantham and nearby areas, with support for drivers who need an easy local vehicle as well as access to vans, minibuses and trucks.",
-  localRelevanceKicker: "Driving in Grantham",
-  localRelevanceTitle: "Why compact car hire works well in Grantham",
-  localRelevanceDescription: "Grantham is the kind of place where a compact car makes immediate sense. The town sits between major motorway links and busy local roads, but many day-to-day journeys still depend on being able to park easily, turn around quickly and move between central streets, residential areas and business locations without hassle. For that kind of driving, a smaller car is often the most practical choice.\n\nIt is also a town with varied travel patterns. Some drivers need a car for rail connections, some for office visits, and others for errands, family travel or short regional trips. Compact car hire in Grantham suits that mix well, giving you a vehicle that feels comfortable on local roads while still being ready for travel farther out when needed.",
-  localRelevanceBlocks: [
-    { title: "Driving around central Grantham", body: "Grantham works well with a compact car because so many journeys involve switching between town-centre streets, retail parks and motorway links. If you are heading near Golden Square, the Cultural Quarter or the station approaches, a smaller vehicle is simply easier to place and easier to live with through a busy day.\n\nThe road network also means you can be in and out quickly when plans change. Routes such as the A49, A50 and A57 connect different parts of Grantham efficiently, while the M62 and M6 are close enough to make regional travel straightforward without needing a larger car." },
-    { title: "Stations, offices and onward travel", body: "Compact car hire is especially useful in Grantham if your day includes rail connections or office visits. Around Grantham Central and Grantham Bank Quay, access can feel more manageable in a smaller vehicle, particularly when you are handling luggage, collecting colleagues or making a quick onward trip after arriving by train.\n\nFor business users travelling to Birchwood or visiting customers across the wider area, a compact hatchback gives a practical balance of comfort and manoeuvrability. It is well suited to mixed driving, from town traffic to short motorway stretches, without feeling oversized for tighter parking areas." },
-    { title: "Planning practical journeys from Grantham", body: "Grantham is often a link point rather than a final stop, which makes choosing the right vehicle important. If your plans include shopping collections, family visits or leisure trips out toward surrounding routes, a compact car keeps things simple while still offering enough room for the usual bags, cases and day-to-day items.\n\nIt also helps to think about timing. Roads around key retail and commuter zones can feel busier at peak periods, so collecting the right car for the job can make the whole journey smoother. If you later need extra carrying space, we can also help with vans, minibuses and trucks from the wider fleet." },
-  ],
-  bottomCtaTitle: "Book a hire car for Grantham",
-  bottomCtaDescription: "Need compact car hire in Grantham? Get in touch and we will help you choose a practical self-drive vehicle for town, business, or motorway use.",
-  faqKicker: "Grantham FAQs",
-  faqTitle: "Grantham compact car hire questions",
-  faqs: [
-    { question: "What is compact car hire in Grantham useful for?", answer: "Compact car hire in Grantham is ideal for local business travel, station connections, shopping trips, commuting, and everyday journeys where easy parking matters." },
-    { question: "Can I hire an automatic car in Grantham?", answer: "Yes, automatic options are available for Grantham hires, which can be especially helpful if your route includes frequent junctions, queues, or regular town driving." },
-    { question: "Why choose a compact hire car for Grantham travel?", answer: "A compact car makes sense in Grantham because it is easy to handle in busy areas while still being comfortable for trips out on the main road network." },
-    { question: "Can I use a compact hire car in Grantham for business travel?", answer: "Yes, if your Grantham plans involve more luggage, more passengers, or a different kind of journey, we can also help with larger cars and other vehicle types." },
-    { question: "Why choose a compact car for driving in Grantham?", answer: "A compact car suits many Grantham journeys because it is easier to park around the town centre, convenient for station runs, and comfortable for local and regional travel." },
-    { question: "Do you offer other vehicle hire services in Grantham?", answer: "Yes. Alongside compact car hire in Grantham, we can also help with vans, minibuses and trucks when your plans need more space or carrying capacity." },
-  ],
-}
+That can make a noticeable difference on ordinary bookings such as meetings, station access and replacement use.` },
+    { title: "A practical fit for station and onward travel", body: `Lincoln bookings often mix urban pickups with wider journeys towards other parts of the county or beyond. Compact cars stay useful in both parts of that day.
 
-const location5Tokens: ContentTokenSet = {
-  metadata: { title: "Compact Car Hire Retford | Vehicle Hire Retford", description: "Compact car hire in Retford for local trips, station travel and regional driving, with access to a wider fleet when your plans need more space." },
-  heroImage: "/images/nearby_location_image_2.jpeg",
-  heroAlt: "Compact hire car driving near a retail and road-link area in Retford",
-  heroTitle: "Compact Car Hire in Retford",
-  heroDescription: "Compact car hire in Retford for local errands, commuting, rail connections and wider Lancashire journeys. A practical choice when you want easy driving and simple parking.",
-  heroSecondaryActionLabel: "Check available vehicles",
-  mainServiceKicker: "Retford compact cars",
-  mainServiceTitle: "Compact hire cars for everyday Retford travel",
-  mainServiceDescription: "Our compact car hire in Retford is designed for drivers who want a vehicle that feels easy to manage without giving up everyday comfort. Whether you need a small city-style car for errands and appointments or a slightly larger hatchback for regular travel, we offer sensible options for the way people move around Retford. Compact cars are a good match for local parking, daily driving and short regional routes where flexibility matters more than unnecessary size.\n\nThey also make sense for mixed-use bookings. Many Retford journeys combine town-centre stops, station access and trips onto larger roads, so having a car that handles all of that comfortably can make the day much easier.",
-  mainVehicles: [
-    { body: "The Fiat 500 is ideal for quick Retford journeys, easy parking and simple town-centre driving.", alt: "Fiat 500 compact hire car in Retford" },
-    { body: "The Hyundai i10 Auto gives Retford drivers a small automatic that feels comfortable and easy to handle.", alt: "Hyundai i10 automatic rental car for Retford" },
-    { body: "The VW Golf is a versatile option for Retford travel, combining everyday practicality with solid comfort on longer runs.", alt: "VW Golf hire car for Retford use" },
-    { body: "The Focus Auto suits Retford drivers who want automatic convenience with space for regular travel and errands.", alt: "Ford Focus automatic hire car in Retford" },
-  ],
-  whyChooseKicker: "Why Retford customers choose us",
-  whyChooseTitle: "A sensible approach to compact car hire in Retford",
-  whyChooseDescription: "When you need a hire car in Retford, the right vehicle should fit naturally into your plans. We keep the focus on sensible compact options, straightforward booking support and a fleet that can also scale up if your journey turns into something bigger.",
-  whyChooseItems: [
-    { title: "Built for everyday use", body: "Our compact cars are well suited to the practical, mixed driving that is common around Retford." },
-    { title: "Easy to live with", body: "Small, manageable vehicles make local parking and repeated stops simpler across Retford." },
-    { title: "Choice that stays practical", body: "From simple runabouts to more spacious hatchbacks, we offer useful options for different Retford journeys." },
-    { title: "Guidance that makes sense", body: "We help you pick a vehicle based on how you will use it, not just on category alone." },
-    { title: "Flexibility across the fleet", body: "If your Retford booking changes, we can often point you toward a larger car, van, minibus or truck instead." },
-    { title: "Simple local service", body: "Our focus is on keeping vehicle hire in Retford straightforward, useful and easy to arrange." },
-  ],
-  additionalServicesKicker: "More vehicle hire in Retford",
-  additionalServicesTitle: "Extra hire choices beyond compact cars in Retford",
-  additionalServicesDescription: "While compact cars are a strong choice for Retford, some trips need more room, more comfort or a different driving setup. Our wider fleet covers those needs without losing the same practical approach.",
-  additionalVehicles: [
-    { body: "The Focus Estate works well in Retford when you want compact-style driving with added boot space for luggage, equipment or shopping.", alt: "Ford Focus Estate hire vehicle for Retford" },
-    { body: "The Mondeo suits longer Retford journeys where extra cabin comfort matters for business travel or family use.", alt: "Ford Mondeo hire car for Retford journeys" },
-    { body: "The Mondeo Auto is a smooth option for Retford drivers who want a roomy automatic for regional roads and motorway travel.", alt: "Ford Mondeo automatic hire car in Retford" },
-    { body: "The Mondeo Estate adds useful carrying space for Retford trips that involve cases, work items or larger day-to-day loads.", alt: "Ford Mondeo Estate hire car for Retford" },
-    { body: "The RAV4 Auto gives you a higher driving position and flexible space, useful for family travel in and around Retford.", alt: "Toyota RAV4 automatic hire vehicle for Retford" },
-    { body: "The C Class Auto is a refined choice for Retford business users and drivers wanting a more executive feel.", alt: "Mercedes C Class automatic hire car in Retford" },
-    { body: "The E Class Auto is well suited to longer Retford journeys where comfort, cabin space and effortless driving all matter.", alt: "Mercedes E Class automatic hire car for Retford" },
-    { body: "The Range Rover offers generous space and a more substantial drive for Retford trips that call for extra presence and comfort.", alt: "Range Rover hire vehicle for Retford travel" },
-  ],
-  featureCtaTitle: "Looking for a compact car in Retford?",
-  featureCtaDescription: "Tell us what kind of driving you need to do in Retford and we will help you find a compact car that feels easy, practical and well matched to the trip.",
-  serviceAreasKicker: "Around Retford",
-  serviceAreasTitle: "Vehicle hire around Retford",
-  serviceAreasDescription: "We cover Retford and surrounding areas with compact car hire for everyday travel, while also offering larger vehicles when the job or journey calls for them.",
-  localRelevanceKicker: "Driving around Retford",
-  localRelevanceTitle: "Why compact car hire makes sense in Retford",
-  localRelevanceDescription: "Retford is well suited to compact car hire because so much local driving is about convenience. You may be heading into town, linking up with nearby routes, calling on customers, or travelling between home, work and appointments. In all of those cases, a smaller car keeps things straightforward and avoids the bulk of a larger vehicle when you do not need it.\n\nIt is also a place where one booking often has to cover different kinds of travel. You might need something easy for local roads during the day, but still comfortable for a longer run later on. Compact cars handle that blend well, which is why they remain a practical option for many Retford drivers.",
-  localRelevanceBlocks: [
-    { title: "A good fit for Retford roads", body: "Retford suits compact car hire because many journeys combine town-centre access with short hops onto larger roads. If you are moving between local shops, residential areas and workplaces, a smaller vehicle is easier to park and less awkward on tighter streets.\n\nThe town also benefits from strong road links, especially via the A6 and nearby M61 corridor. That makes a compact car a sensible all-rounder: small enough for everyday use in Retford, but still comfortable when your trip stretches farther across Lancashire." },
-    { title: "Town-centre access and station travel", body: "For rail users, compact car hire in Retford is useful when your journey starts or ends around Retford station and nearby central streets. Picking up passengers, dealing with luggage or making quick onward connections tends to feel simpler in a smaller car that can slot into ordinary parking spaces without fuss.\n\nThe same applies to routine errands. Whether you are visiting local retail areas, heading to appointments or travelling across town several times in one day, a compact hatchback keeps things manageable and efficient rather than oversized for the job." },
-    { title: "Flexible travel from Retford", body: "Retford also works as a base for outward travel, so it helps to choose a vehicle that can handle more than one purpose. A compact car gives you enough comfort for regional driving while still being practical once you are back in town. That balance makes it popular for mixed-use bookings rather than one single journey type.\n\nIf your plans develop and you need extra room for luggage, passengers or equipment, the wider fleet gives you more options without needing to look elsewhere. We can help with larger cars, and when required, vans, minibuses and trucks too." },
-  ],
-  bottomCtaTitle: "Book the right hire car for Retford",
-  bottomCtaDescription: "For compact car hire in Retford, get in touch with our team and we will help you choose a vehicle that fits the journey.",
-  faqKicker: "Retford hire questions",
-  faqTitle: "Compact car hire FAQs for Retford",
-  faqs: [
-    { question: "Do you offer compact car hire in Retford?", answer: "Yes, we provide compact car hire in Retford for local driving, day-to-day use, station runs and longer regional journeys." },
-    { question: "Is a compact car suitable for driving around Retford?", answer: "A compact car is often a strong choice in Retford because it is easy to drive through town, practical for parking and comfortable on routes linking into surrounding roads." },
-    { question: "Can I book an automatic hire car in Retford?", answer: "Yes, if you prefer not to drive manual, automatic compact options are available for Retford bookings." },
-    { question: "What kind of trips does compact car hire in Retford suit?", answer: "Compact car hire in Retford is useful for commuting, family visits, shopping trips, business travel and onward journeys into the wider area." },
-    { question: "Do you have larger vehicles available from Retford?", answer: "If you need more room than a compact car offers in Retford, we can also help with larger cars as well as vans, minibuses and trucks." },
-    { question: "How do I choose the right hire vehicle in Retford?", answer: "The best way is to speak with us about your route, passenger needs and luggage so we can help match the right vehicle for Retford travel." },
-  ],
-}
+They are small enough for the city element and still comfortable enough once the trip opens out.` },
+    { title: "Easy to keep practical when plans change", body: `In a city like Lincoln, plans can change quickly between traffic, timing and destination updates. A compact hatchback gives you a practical base that stays easy to manage when that happens.
 
-const location6Tokens: ContentTokenSet = {
-  metadata: { title: "Compact Car Hire Southwell | Small Car Rental Options", description: "Compact car hire in Southwell for local trips, business travel and onward journeys. Practical self-drive vehicles with wider fleet options available." },
-  heroImage: "/images/nearby_location_image_1.jpeg",
-  heroAlt: "Compact hire car on a local access road in Southwell",
-  heroTitle: "Compact Car Hire in Southwell",
-  heroDescription: "Compact car hire in Southwell for local travel, work use, shopping trips and onward journeys. Practical vehicles that suit everyday driving without unnecessary size.",
-  heroSecondaryActionLabel: "See compact car choices",
-  mainServiceKicker: "Compact cars in Southwell",
-  mainServiceTitle: "Straightforward compact car hire in Southwell",
-  mainServiceDescription: "If you need compact car hire in Southwell, we offer practical vehicles that make local trips simpler. Small cars are well suited to everyday driving around residential areas, retail parks and business routes where easy parking and smooth manoeuvring matter. Whether you are heading to meetings, sorting family travel, covering a temporary vehicle gap or planning a longer run beyond town, a compact hire car gives you useful flexibility without taking up more space than you need.\n\nOur compact range covers straightforward town driving as well as comfortable travel for motorway connections. That means you can choose a city-friendly option for short local errands or a larger hatchback for regular runs in and out of Southwell. We also offer vans, minibuses and trucks if your plans change and you need more carrying space or passenger room.",
-  mainVehicles: [
-    { body: "A neat choice for short trips around Southwell, with easy handling for local roads, shopping runs and everyday travel.", alt: "Fiat 500 compact hire car for Southwell local driving" },
-    { body: "An automatic compact car that keeps town driving simple, especially useful for stop start traffic and quick local errands.", alt: "Hyundai i10 automatic compact hire car in Southwell" },
-    { body: "A solid all rounder for Southwell drivers who want compact size with extra comfort for commuting and regional journeys.", alt: "VW Golf compact hatchback hire car in Southwell" },
-    { body: "A practical automatic for longer drives from Southwell, giving you relaxed road manners and useful cabin space.", alt: "Ford Focus automatic hire car for Southwell journeys" },
+If the journey later calls for more room, the wider fleet is still available.` },
   ],
-  whyChooseKicker: "Why Southwell drivers choose us",
-  whyChooseTitle: "A practical option for Southwell car hire",
-  whyChooseDescription: "Southwell journeys can vary quickly between local roads, retail access routes and motorway links, so it helps to hire a car that feels easy to live with. We keep the offer practical, with compact vehicles that are simple to drive, sensible for everyday plans and backed by a wider self-drive fleet when you need something larger.",
-  whyChooseItems: [
-    { title: "Useful for town driving", body: "A compact car is easier to place in busier parts of Southwell, especially when your day includes several short stops." },
-    { title: "Choice that fits the trip", body: "Our range includes smaller options for local use and larger hatchbacks when you want extra room for regular journeys from Southwell." },
-    { title: "Simple self-drive process", body: "We keep the process clear so you can get moving without unnecessary delays or guesswork." },
-    { title: "Good for daily schedules", body: "Compact cars are a practical match for station drop offs, work appointments and planned travel around Southwell." },
-    { title: "Wider fleet available", body: "If you later need extra carrying capacity, we can also help with vans, minibuses and trucks." },
-    { title: "Practical service", body: "We focus on sensible vehicle hire for real journeys rather than overcomplicated packages." },
-  ],
-  additionalServicesKicker: "More vehicle hire in Southwell",
-  additionalServicesTitle: "Additional vehicle hire options for Southwell",
-  additionalServicesDescription: "Compact cars are often the right match for Southwell, but not every journey is the same. If you need more room, more comfort or a different type of vehicle, our wider fleet is available too.",
-  additionalVehicles: [
-    { body: "The Focus Estate adds flexible boot space for Southwell journeys that involve luggage, work gear or larger shopping loads.", alt: "Ford Focus Estate hire car for Southwell" },
-    { body: "The Mondeo is a comfortable step up for Southwell drivers covering longer regional miles.", alt: "Ford Mondeo hire vehicle in Southwell" },
-    { body: "The Mondeo Auto suits Southwell bookings where you want easy automatic driving and a more spacious cabin.", alt: "Ford Mondeo automatic hire car for Southwell" },
-    { body: "The Mondeo Estate is useful for Southwell travel that combines passengers with larger bags or equipment.", alt: "Ford Mondeo Estate hire car in Southwell" },
-    { body: "The RAV4 Auto offers extra versatility and a higher seating position for varied Southwell journeys.", alt: "Toyota RAV4 automatic hire vehicle for Southwell" },
-    { body: "The C Class Auto is a refined option for Southwell business travel and more comfort-focused trips.", alt: "Mercedes C Class automatic hire car in Southwell" },
-    { body: "The E Class Auto gives Southwell drivers extra room and a smooth drive for longer road use.", alt: "Mercedes E Class automatic hire car for Southwell" },
-    { body: "The Range Rover is suited to Southwell bookings where space, comfort and a more substantial vehicle are preferred.", alt: "Range Rover hire vehicle for Southwell travel" },
-  ],
-  featureCtaTitle: "Arrange compact car hire in Southwell",
-  featureCtaDescription: "Need a small, easy-to-manage vehicle in Southwell? Contact us and we will help you choose the right compact car for the way you travel.",
-  serviceAreasKicker: "Southwell coverage",
-  serviceAreasTitle: "Serving Southwell and nearby travel routes",
-  serviceAreasDescription: "We support Southwell and surrounding routes with compact car hire that works for local driving, station runs, business travel and wider self-drive needs.",
-  localRelevanceKicker: "Local driving in Southwell",
-  localRelevanceTitle: "Compact car hire that suits Southwell journeys",
-  localRelevanceDescription: "Southwell is a practical place to hire a compact car because many journeys are functional rather than flashy. Drivers often need to get between residential areas, retail destinations, work locations and connecting routes without making the trip more complicated than it needs to be. A compact vehicle does that job well, giving you simple local usability and enough comfort for longer miles.\n\nThe town's road layout also makes vehicle size worth thinking about. If your day includes repeated stops, everyday parking and quick turns onto major routes, a smaller car can be the most useful option overall. It fits the way many people travel in Southwell: flexible, efficient and easy to manage.",
-  localRelevanceBlocks: [
-    { title: "Well suited to local travel patterns", body: "Southwell is built around movement between neighbourhoods, shopping areas and major connecting roads, which is one reason compact cars work so well here. A smaller vehicle is easy to manage on routine local runs and still comfortable enough for longer journeys once you leave town.\n\nAccess to routes such as the M58 and A570 also means many trips quickly move from local roads to faster stretches. That makes compact car hire in Southwell a useful balance: practical in everyday settings, but not limited when the journey opens out." },
-    { title: "Useful for errands, work and short hops", body: "Many Southwell bookings are about convenience rather than occasion travel. You may need a car for appointments, work visits, family travel or straightforward errands, and in those cases a compact vehicle usually feels like the right fit. It is easier to park, easier to turn around and easier to use over multiple stops in one day.\n\nThat matters around busier local destinations and shopping areas where space can be tighter and journeys more stop-start than open-road driving. A small hatchback can make those ordinary tasks feel less effort than using a larger vehicle you do not really need." },
-    { title: "Ready for local use and regional links", body: "Southwell also sits in a position where outward travel is common. If your plans involve reaching business sites, connecting with nearby towns or covering regional miles, a compact car remains a sensible choice because it is comfortable enough for the road while still being manageable back on local streets.\n\nWhen the journey changes shape and you need more carrying space, the wider fleet is there to support that next step. We can help move from compact car hire in Southwell to larger cars, vans, minibuses or trucks depending on what the day actually requires." },
-  ],
-  bottomCtaTitle: "Speak to us about Southwell car hire",
-  bottomCtaDescription: "Arrange compact car hire in Southwell with a team that focuses on practical vehicles and straightforward support.",
-  faqKicker: "Southwell FAQs",
-  faqTitle: "Compact car hire questions for Southwell",
   faqs: [
-    { question: "Do you provide compact car hire in Southwell?", answer: "Yes, we offer compact car hire in Southwell for local driving, everyday travel and wider regional journeys." },
-    { question: "Why hire a compact car in Southwell?", answer: "Compact cars work well in Southwell because they are practical for local roads, easier to park and comfortable for routine journeys." },
-    { question: "Are automatic hire cars available in Southwell?", answer: "Yes, we can help with automatic compact hire cars in Southwell if that is your preferred driving option." },
-    { question: "Is compact car hire in Southwell suitable for work use?", answer: "Yes, many drivers use compact car hire in Southwell for work visits, appointments, commuting and everyday business travel." },
-    { question: "Can I upgrade to a larger vehicle in Southwell?", answer: "If your Southwell journey needs more room than a compact car provides, we can also assist with larger cars, vans, minibuses and trucks." },
-    { question: "How do I pick the best hire car for Southwell?", answer: "Tell us how you expect to use the vehicle in Southwell and we will help point you toward the most suitable option in the fleet." },
+    { question: "Why choose compact car hire in Lincoln?", answer: "Compact cars are well suited to Lincoln because they are easier in city traffic, simpler to park and still comfortable enough for wider regional mileage." },
+    { question: "Is compact car hire in Lincoln useful for station access?", answer: "Yes. Station collections and onward travel are a common reason customers choose a compact car in Lincoln." },
+    { question: "Do you offer automatic compact cars in Lincoln?", answer: "Yes, subject to availability. If you prefer an automatic for city driving or longer regional routes from Lincoln, ask when booking." },
+    { question: "Are compact hire cars suitable for business travel in Lincoln?", answer: "Yes. Compact cars work well for meetings, visits, local appointments and practical day-to-day business mileage around Lincoln." },
+    { question: "Can I use a compact hire car for longer trips from Lincoln?", answer: "Yes. Compact hatchbacks remain a sensible option when the route mixes Lincoln city driving with regional travel and you do not need a larger vehicle." },
+    { question: "What if I later need more space than a compact car?", answer: "Larger cars, vans, minibuses and trucks are also available if the Lincoln booking grows beyond a compact hatchback." },
   ],
-}
+})
 
-const location7Tokens: ContentTokenSet = {
-  metadata: { title: "Compact Car Hire Gainsborough | Small Car Rental for City and Regional Travel", description: "Compact car hire in Gainsborough for local trips, business travel and easy regional driving. Small cars plus access to vans, minibuses and trucks." },
-  heroImage: "/images/nearby_location_image_2.jpeg",
-  heroAlt: "Compact hire car on a regional access road in Gainsborough",
-  heroTitle: "Compact Car Hire in Gainsborough",
-  heroDescription: "Practical compact car hire in Gainsborough for commuting, city-centre trips, business travel and easy regional driving. A smart choice when you want a vehicle that is simple to park and comfortable on the move.",
-  heroSecondaryActionLabel: "View vehicle options",
-  mainServiceKicker: "Gainsborough compact car hire",
-  mainServiceTitle: "Small cars that suit the way Gainsborough journeys actually work",
-  mainServiceDescription: "Our Gainsborough compact car hire service is built around everyday usability. Whether you need something for local appointments, work travel, visiting family, university-related journeys or onward trips beyond the city, a smaller vehicle keeps things straightforward. Compact cars are easier to manoeuvre in busier areas, simpler to park and well suited to mixed driving where your route may include central streets, dual carriageways and motorway sections.\n\nGainsborough is the kind of place where that flexibility matters. One journey might involve station access, another a run across town, and the next a motorway connection heading out of the area. A compact hire car gives you practical comfort without feeling oversized for the job. If you need more space than a standard small car, we can also help with larger cars and other vehicle types through the wider fleet.",
-  mainVehicles: [
-    { body: "A compact city car that suits Ashton-in-Makerfield errands, local visits and short day to day journeys.", alt: "Fiat 500 hire car for local travel in Ashton-in-Makerfield" },
-    { body: "An easy automatic choice for Ashton-in-Makerfield drivers who want light, simple handling around town.", alt: "Hyundai i10 automatic hire car in Ashton-in-Makerfield" },
-    { body: "A versatile hatchback for Ashton-in-Makerfield trips that combine local driving with regular main road miles.", alt: "VW Golf hire car for Ashton-in-Makerfield journeys" },
-    { body: "A comfortable automatic with enough space for longer Ashton-in-Makerfield travel while staying easy to manage locally.", alt: "Ford Focus automatic hire car in Ashton-in-Makerfield" },
-  ],
-  whyChooseKicker: "Why Gainsborough customers book with us",
-  whyChooseTitle: "A practical choice for compact car hire in Gainsborough",
-  whyChooseDescription: "Gainsborough journeys can change quickly between city traffic, retail access, station approaches and motorway travel, so the right hire vehicle needs to feel adaptable rather than awkward. We focus on straightforward compact car options that work for practical day-to-day use.\n\nCustomers in Gainsborough also value having access to a broader fleet when plans shift. If a small car is right today but a van, minibus or larger vehicle is needed next time, the wider service makes that easy to arrange through one team.",
-  whyChooseItems: [
-    { title: "Town friendly vehicles", body: "Smaller cars make sense for Ashton-in-Makerfield drivers who want something simple for local roads and routine stops." },
-    { title: "Useful fleet choice", body: "Automatic and hatchback options help you match the car to the kind of driving you actually have planned in Ashton-in-Makerfield." },
-    { title: "Straightforward to arrange", body: "We focus on practical self-drive hire with clear communication and sensible vehicle guidance." },
-    { title: "Flexible for different journeys", body: "Compact cars are well suited to mixed trips that include local errands, work travel and wider road links from Ashton-in-Makerfield." },
-    { title: "Easy to scale up", body: "You can move to a larger car or another vehicle type if your plans need more carrying room or passenger space." },
-    { title: "Clear and useful service", body: "Our service is built around practical use, not overcomplicated wording or unnecessary extras." },
-  ],
-  additionalServicesKicker: "More Gainsborough vehicle options",
-  additionalServicesTitle: "Wider vehicle hire choices for Gainsborough journeys",
-  additionalServicesDescription: "Alongside compact car hire in Gainsborough, we also offer larger cars, estates, SUVs and executive models when your journey needs more room, extra comfort or stronger motorway presence. Van, minibus and truck hire can also be arranged through the wider fleet.",
-  additionalVehicles: [
-    { body: "A handy estate for Ashton-in-Makerfield drivers who need extra boot space for cases, equipment or bulky day to day loads.", alt: "Ford Focus Estate hire car for Ashton-in-Makerfield journeys" },
-    { body: "A comfortable saloon suited to longer runs from Ashton-in-Makerfield, with a calmer feel on faster roads.", alt: "Ford Mondeo hire car in Ashton-in-Makerfield" },
-    { body: "An automatic option for Ashton-in-Makerfield journeys where easy motorway driving and a more relaxed setup matter.", alt: "Ford Mondeo automatic hire car for Ashton-in-Makerfield" },
-    { body: "Good for Ashton-in-Makerfield trips that need both passenger comfort and added load space for luggage or work items.", alt: "Ford Mondeo Estate hire car in Ashton-in-Makerfield" },
-    { body: "A higher driving position and flexible cabin make this a strong choice for mixed local and regional travel from Ashton-in-Makerfield.", alt: "Toyota RAV4 automatic hire vehicle in Ashton-in-Makerfield" },
-    { body: "A refined automatic for Ashton-in-Makerfield business use, client visits or longer personal trips where comfort counts.", alt: "Mercedes C Class automatic hire car for Ashton-in-Makerfield" },
-    { body: "A spacious executive car for Ashton-in-Makerfield travel when you want a quieter, more relaxed drive with extra room.", alt: "Mercedes E Class automatic hire car in Ashton-in-Makerfield" },
-    { body: "A roomy premium option for Ashton-in-Makerfield journeys that call for comfort, presence and flexible luggage space.", alt: "Range Rover hire vehicle for Ashton-in-Makerfield travel" },
-  ],
-  featureCtaTitle: "Check compact car availability in Gainsborough",
-  featureCtaDescription: "Need a small car for Gainsborough driving, station access or a straightforward motorway run? Speak to us and we will help you find a practical compact hire option.",
-  serviceAreasKicker: "Around Gainsborough",
-  serviceAreasTitle: "Vehicle hire serving Gainsborough and nearby routes",
-  serviceAreasDescription: "We support customers travelling in and around Gainsborough, with compact car hire that fits local driving as well as onward regional routes. The wider service also covers vans, minibuses and trucks when a larger vehicle is needed.",
-  localRelevanceKicker: "Driving in Gainsborough",
-  localRelevanceTitle: "Why compact car hire works well in Gainsborough",
-  localRelevanceDescription: "Gainsborough suits compact car hire because so many journeys mix city-centre traffic with quick access to major routes. A smaller car is useful when you are heading through busy areas near Gainsborough Railway Station, moving around the ring-road sections, or fitting into tighter parking around shops, offices and residential streets. It gives you enough comfort for longer drives while staying easy to place in day-to-day traffic.\n\nThe city also works well as a base for wider travel. With the A59, A6, M6 and M55 all playing a part in local movement, a compact vehicle makes sense for customers who want a car that feels manageable in town but still settled on regional roads. That balance is often what Gainsborough drivers and visitors need most.",
-  localRelevanceBlocks: [
-    { title: "Why compact cars suit Ashton-in-Makerfield", body: "Driving in Ashton-in-Makerfield often means mixing short town journeys with quick links onto faster roads, so a compact car usually makes the most sense. It gives you enough comfort for everyday travel while staying easy to place in tighter spaces near shops, residential streets and local services.\n\nIf your day includes several stops, smaller vehicles help take the pressure out of parking and turning. That matters around the town centre and on busier approach roads where a larger vehicle can feel unnecessary for routine trips." },
-    { title: "Road links and journey planning in Ashton-in-Makerfield", body: "One of the useful things about hiring in Ashton-in-Makerfield is how quickly you can connect to surrounding routes. The A58 and A49 make it easier to move between local destinations and onward journeys, so choosing the right car depends on whether you are staying close to town or heading further out.\n\nFor shorter local driving, a Fiat 500 or Hyundai i10 Auto keeps things simple. If you expect more time on main roads, a Golf or Focus Auto gives you extra comfort without losing the easy handling that works well in Ashton-in-Makerfield." },
-    { title: "Choosing the right hire vehicle in Ashton-in-Makerfield", body: "Ashton-in-Makerfield also works well as a starting point for practical day to day travel, whether that means visiting family, covering work appointments or replacing your own car for a short period. A compact hire vehicle keeps things flexible without making local movement feel cumbersome.\n\nWhen you know you will need more room, it helps to think ahead about passengers, luggage and the type of roads you will use most. We keep the choice straightforward, so Ashton-in-Makerfield drivers can move from a simple compact car to a larger vehicle if the journey calls for it." },
-  ],
-  bottomCtaTitle: "Book your Gainsborough compact car hire",
-  bottomCtaDescription: "If you need a compact car in Gainsborough for business travel, station runs, family visits or general local driving, contact the team and we will help you choose a suitable vehicle.",
-  faqKicker: "Gainsborough hire FAQs",
-  faqTitle: "Common questions about compact car hire in Gainsborough",
-  faqs: [
-    { question: "Can I hire a compact car for local and longer trips from Gainsborough?", answer: "Yes, we can help arrange compact car hire for Gainsborough journeys ranging from local errands and work appointments to longer regional travel. Let us know where you plan to drive and we can suggest a suitable option." },
-    { question: "Why choose a compact car for driving in Gainsborough?", answer: "A compact car is often a good fit for Gainsborough because it is easier to handle around the city centre, station approaches, retail parking and busy routes feeding onto the A59 and M6." },
-    { question: "Do you offer automatic compact cars in Gainsborough?", answer: "Yes, automatic compact car availability can be checked for Gainsborough bookings. If you prefer automatic driving for commuting, town traffic or motorway work, ask when you contact us." },
-    { question: "Is Gainsborough compact car hire suitable for business use?", answer: "Many customers use Gainsborough compact car hire for business meetings, visiting clients, station pickups, university-related travel and convenient day-to-day driving where a smaller vehicle makes access easier." },
-    { question: "Can I arrange other vehicle hire in Gainsborough as well as compact cars?", answer: "Yes, we also support Gainsborough customers who need vans, minibuses or trucks. If your plans change from a small car to something larger, we can talk through the wider fleet." },
-    { question: "How do I book compact car hire in Gainsborough?", answer: "The quickest way to arrange Gainsborough compact car hire is to call with your preferred timing, driving requirements and any route plans. We will then help match the booking to the right vehicle." },
-  ],
-}
+const location2Tokens = createNearbyLocationTokens({
+  location: "Mansfield",
+  heroImage: "/images/compactcarhirenewark-co-uk-nearby-location-fleet-b.png",
+  heroAlt: "Compact hire cars lined up for everyday driving in Mansfield",
+  metadataDescription: "Compact car hire in Mansfield for everyday local travel, station runs and regional driving, with practical access to wider Nottinghamshire routes.",
+  heroDescription: "Compact car hire in Mansfield for everyday driving, station collections, business mileage and practical regional trips when you want something easy to place and easy to park.",
+  serviceDescription: `Compact car hire in Mansfield is built around practical local use. Many customers want a vehicle that is easy to park, easy to live with and comfortable enough for a mix of town driving and short motorway mileage. That could mean getting across town for appointments, collecting someone from Mansfield station or heading out towards wider Nottinghamshire routes on a short-notice trip.
 
-const location8Tokens: ContentTokenSet = {
-  metadata: { title: "Compact Car Hire Worksop | Small Car Rental for City Travel", description: "Compact car hire in Worksop for city journeys, business travel and easy regional driving. Small cars backed by a wider vehicle hire fleet." },
-  heroImage: "/images/nearby_location_image_1.jpeg",
-  heroAlt: "Compact hire car approaching a busy urban route in Worksop",
-  heroTitle: "Compact Car Hire in Worksop",
-  heroDescription: "Compact car hire in Worksop for city driving, work travel, station access and flexible regional trips. A sensible option when you want easy handling without giving up everyday comfort.",
-  heroSecondaryActionLabel: "See available vehicles",
-  mainServiceKicker: "Worksop compact car hire",
-  mainServiceTitle: "Smart small-car hire for Worksop travel",
-  mainServiceDescription: "Our Worksop compact car hire service is designed for drivers who need a vehicle that works in real city conditions. Whether you are travelling for meetings, visiting family, getting around central districts or connecting onto major regional routes, a compact car gives you the flexibility to move without feeling over-committed to a larger vehicle. It is a practical fit for stop-start traffic, tighter parking and mixed-use journeys across the city.\n\nWorksop driving can change quickly from urban streets to major roads, and that is exactly where compact cars perform well. They are easy to place in crowded areas yet comfortable enough for longer motorway sections when your plans extend beyond the city. If you need more carrying capacity or passenger room, we can also support Worksop customers with the wider fleet.",
-  mainVehicles: [
-    { body: "A neat choice for Worksop when you want easy parking, light steering and a compact footprint for local streets, quick errands and city-centre trips.", alt: "Fiat 500 compact hire car for Worksop driving" },
-    { body: "The Hyundai i10 Auto suits Worksop drivers who want straightforward automatic driving for commuting, station runs and everyday travel around the city.", alt: "Hyundai i10 automatic city car available for Worksop hire" },
-    { body: "A practical all-rounder for Worksop, with extra comfort and space for longer drives, business travel and weekends away without feeling oversized.", alt: "VW Golf hatchback hire car for Worksop journeys" },
-    { body: "The Focus Auto is well suited to Worksop traffic, giving you automatic convenience, solid motorway comfort and useful room for passengers or luggage.", alt: "Ford Focus automatic hire car in Worksop" },
+Compact cars are often the right answer because they stay manageable in busier traffic while still being perfectly useful on faster roads such as the A60, A617 and the wider M1 corridor. The result is a hire option that feels sensible rather than oversized.`,
+  whyChooseDescription: "We keep compact car hire straightforward for Mansfield customers by focusing on useful vehicles, clear support and everyday local practicality.",
+  serviceAreasDescription: "We support compact car hire in Mansfield and across nearby Nottinghamshire and Derbyshire routes, with compact options that stay easy locally and comfortable on wider mileage.",
+  localRelevanceDescription: `Mansfield is the kind of place where compact car hire feels practical from the first mile. A lot of local driving involves switching between town-centre roads, retail parking, residential streets and quick onward links such as the A60, A617 and the M1 corridor.
+
+Compact models also suit the stop-start reality of local movement around station access, shopping areas and short business trips. If you want a vehicle that is simple to park, easy to place in traffic and not oversized for everyday use, a compact car is often the sensible choice.`,
+  localBlocks: [
+    { title: "A sensible fit for mixed Mansfield journeys", body: `Many Mansfield bookings combine local town driving with a short stretch on larger roads. A compact hatchback keeps the town-centre part of the trip straightforward while still handling A-road or motorway mileage comfortably enough when the route opens out.
+
+That matters if the day includes several small stops rather than one long drive.` },
+    { title: "Useful around stations, retail areas and appointments", body: `Compact cars work particularly well for station access, business visits, healthcare appointments and everyday retail trips around Mansfield. They are easy to slot into ordinary car parks and less awkward in busy local traffic than something larger.
+
+For customers covering temporary replacement transport, that simplicity is often exactly what they want.` },
+    { title: "Easy to step up when the plan changes", body: `Sometimes a booking starts as a compact-car job but later needs more carrying room or more passenger comfort. That is one reason we keep the wider fleet in view, from estates and SUVs through to vans, minibuses and trucks.
+
+You can start with the right car for a simple Mansfield trip and still have a clear route to something larger if the journey grows.` },
   ],
-  whyChooseKicker: "Why Worksop drivers choose us",
-  whyChooseTitle: "Why choose our compact car hire in Worksop",
-  whyChooseDescription: "When you need compact car hire in Worksop, the details matter. You want a vehicle that makes city driving simpler, collection straightforward and onward travel less of a faff. Our compact range is chosen for practical day-to-day use, whether you are staying local or heading out across Greater Worksop.",
-  whyChooseItems: [
-    { title: "Well suited to local use", body: "Compact cars make day to day Tyldesley travel easier, particularly when you want straightforward driving and simpler parking." },
-    { title: "Practical vehicle choice", body: "Our fleet includes compact manuals, automatics and larger hatchbacks so you can choose what feels right for Tyldesley journeys." },
-    { title: "Simple to arrange", body: "We keep the booking process clear and focused on what you actually need for the trip." },
-    { title: "Flexible for mixed driving", body: "Tyldesley travel can range from short local errands to wider road use, and compact cars are a strong fit for both." },
-    { title: "Practical hire guidance", body: "Useful if you are heading into Worksop for work, shopping, social plans or station connections and want a car that is simple to handle in busy streets." },
-    { title: "Wider vehicle options", body: "If you need something beyond a compact car in Worksop, we can also help with vans, minibuses and trucks through the wider fleet." },
-  ],
-  additionalServicesKicker: "More Worksop vehicle choices",
-  additionalServicesTitle: "Extra hire options beyond compact cars in Worksop",
-  additionalServicesDescription: "As well as compact car hire in Worksop, we can arrange larger saloons, estates, SUVs and executive vehicles for journeys that call for extra room or added comfort. The wider fleet also includes vans, minibuses and trucks for more demanding transport needs.",
-  additionalVehicles: [
-    { body: "A useful estate for Tyldesley trips that call for extra boot room without stepping up to a much larger vehicle.", alt: "Ford Focus Estate hire car for Tyldesley travel" },
-    { body: "A comfortable choice for Tyldesley drivers covering longer road miles or business travel with a more relaxed feel.", alt: "Ford Mondeo hire car in Tyldesley" },
-    { body: "An automatic saloon that suits Tyldesley journeys where smooth driving and cabin comfort matter more.", alt: "Ford Mondeo automatic hire car for Tyldesley" },
-    { body: "A practical option for Tyldesley customers who need room for luggage, equipment or larger personal loads.", alt: "Ford Mondeo Estate hire car for Tyldesley journeys" },
-    { body: "A flexible automatic with a higher seating position, useful for Tyldesley travel that mixes local roads with longer runs.", alt: "Toyota RAV4 automatic hire vehicle in Tyldesley" },
-    { body: "A refined car for Tyldesley business journeys, client visits or personal trips where comfort is the priority.", alt: "Mercedes C Class automatic hire car for Tyldesley" },
-    { body: "A roomy executive automatic for Tyldesley drivers who want extra space and a quieter drive on longer routes.", alt: "Mercedes E Class automatic hire car in Tyldesley" },
-    { body: "A spacious premium option for Tyldesley journeys with more passengers, more luggage or a preference for a higher driving position.", alt: "Range Rover hire vehicle for Tyldesley travel" },
-  ],
-  featureCtaTitle: "Check Worksop compact car options",
-  featureCtaDescription: "Need a small car that suits Worksop traffic, business travel and easier parking? Contact us to check compact car availability for your Worksop journey.",
-  serviceAreasKicker: "Across Worksop",
-  serviceAreasTitle: "Vehicle hire covering Worksop and surrounding routes",
-  serviceAreasDescription: "We provide compact car hire for Worksop travel, covering city-centre use, local districts and onward regional routes. If you need something larger, vans, minibuses and trucks are also available through the wider service.",
-  localRelevanceKicker: "Worksop driving guide",
-  localRelevanceTitle: "Why compact car hire makes sense in Worksop",
-  localRelevanceDescription: "Worksop is one of the clearest places to see the value of a compact hire car. Journeys often involve traffic-heavy corridors, city-centre turns, controlled parking areas and quick changes between urban streets and major road links. A smaller vehicle takes the pressure out of that. It is easier to manoeuvre around the inner districts, simpler to park and well suited to drivers who want a car that feels calm rather than bulky in busier conditions.\n\nThe city also demands flexibility. One trip may keep you near Worksop Piccadilly or Oxford Road, while the next heads out via the Mancunian Way, M60 or M62. Compact cars work well because they bridge both styles of travel. You get something practical for dense city movement but still comfortable enough for longer runs beyond Worksop.",
-  localRelevanceBlocks: [
-    { title: "Everyday driving around Tyldesley", body: "Tyldesley is the kind of place where a compact hire car often makes daily travel easier. Many journeys are local, practical and made up of short runs between residential areas, shops and routine appointments, so having a car that feels light and manageable is a real advantage.\n\nFor that sort of driving, a small hatchback or compact automatic keeps things simple. You get the flexibility of a self-drive vehicle without the bulk of something larger than the journey really needs." },
-    { title: "Using Tyldesley for onward journeys", body: "Tyldesley also benefits from strong onward road links, especially via the A580 East Lancashire Road, which helps with travel beyond town. That makes compact hire a sensible middle ground. You can stay comfortable on a longer run while still keeping the car easy to park and handle when you return to local streets.\n\nIf your day involves mixed travel, it is worth thinking about time on faster roads as well as town access. Drivers staying mostly local may prefer the smallest options, while those using Tyldesley as a starting point for wider journeys often benefit from a Golf or Focus Auto." },
-    { title: "Matching the car to the trip in Tyldesley", body: "Because travel needs in Tyldesley can shift quickly, the right vehicle often comes down to what the day actually looks like. A simple town based plan may call for a compact city car, while a longer route with passengers or luggage may need a larger hatchback or estate.\n\nWe keep that choice practical. Tyldesley customers can hire a compact car for convenience, then step into a larger vehicle if the journey changes. That flexibility also extends across our wider fleet when a van, minibus or truck becomes the better fit." },
-  ],
-  bottomCtaTitle: "Arrange your Worksop compact car hire",
-  bottomCtaDescription: "If you need a compact car in Worksop for work, city travel, station pickups or a wider regional journey, get in touch and we will help you line up the right vehicle.",
-  faqKicker: "Worksop hire FAQs",
-  faqTitle: "Helpful answers for compact car hire in Worksop",
   faqs: [
-    { question: "Why is a compact car a good option for driving in Worksop?", answer: "A compact car is often ideal for Worksop because it is easier to handle in dense traffic, city-centre parking areas, residential streets and busy approach roads while still being comfortable for longer drives." },
-    { question: "Can I book compact car hire in Worksop for business use?", answer: "Yes, Worksop compact car hire works well for business travel, meetings, office visits, client appointments and general professional use where you want a vehicle that is tidy, practical and easy to park." },
-    { question: "Do you have automatic compact cars available in Worksop?", answer: "Automatic compact car availability can be checked for Worksop bookings. If you expect heavier traffic or simply prefer automatic driving in the city, let us know when you enquire." },
-    { question: "Is compact car hire in Worksop useful for station and city-centre travel?", answer: "Yes, many customers use Worksop compact car hire for rail station access, city-centre stays and straightforward onward travel. A smaller car is often easier to live with around busy arrival and parking points." },
-    { question: "Can I arrange other vehicle hire in Worksop through the same service?", answer: "Yes, alongside compact cars we can also help Worksop customers with vans, minibuses and trucks when the journey or load calls for something larger." },
-    { question: "How do I arrange compact car hire in Worksop?", answer: "To book compact car hire in Worksop, call with your travel dates, preferred vehicle type and any key route details. We will help you choose a suitable option for the journey." },
+    { question: "Why choose compact car hire in Mansfield?", answer: "Compact cars make sense in Mansfield because they are easier to park, easy to drive around town and still comfortable enough for short motorway and A-road mileage." },
+    { question: "Can I arrange compact car hire in Mansfield at short notice?", answer: "Yes, subject to availability. If you need a compact car quickly in Mansfield, call us and we will talk through what is ready for the timing you need." },
+    { question: "Do you only offer small cars in Mansfield?", answer: "No. Compact cars are the core offer on this page, but larger cars, estates, SUVs, vans, minibuses and trucks are also available if the journey needs more room." },
+    { question: "What are compact hire cars in Mansfield commonly used for?", answer: "Common uses include station runs, business visits, shopping trips, family travel, temporary replacement transport and short regional journeys." },
+    { question: "Are automatic compact cars available in Mansfield?", answer: "Yes, subject to availability. If you prefer an automatic for easier local traffic or more relaxed regional driving, ask when booking." },
+    { question: "What should I tell you when booking in Mansfield?", answer: "The most useful details are the dates, expected route, whether you want manual or automatic driving, and whether there is any chance you will need more space than a compact hatchback." },
   ],
-}
+})
+
+const location3Tokens = createNearbyLocationTokens({
+  location: "Nottingham",
+  heroImage: "/images/compactcarhirenewark-co-uk-nearby-location-fleet-a.png",
+  heroAlt: "Compact hire car lined up for city and regional travel in Nottingham",
+  metadataDescription: "Compact car hire in Nottingham for city-centre driving, station access, business travel and regional routes using the A52 and A60.",
+  heroDescription: "Compact car hire in Nottingham for city-centre driving, station collections, business mileage and practical regional journeys from a busy urban base.",
+  serviceDescription: "Compact car hire in Nottingham is often the practical answer when the journey includes dense city traffic, controlled parking and regular short stops. A smaller vehicle keeps those everyday pressures easier to manage while still being comfortable enough for wider runs using routes such as the A52 and A60.\n\nThat balance is useful across a city like Nottingham where the booking may start around the station, NG2 or an urban neighbourhood, then widen out into business travel or a regional return trip. Compact cars stay flexible without feeling larger than the job really needs.",
+  whyChooseDescription: "Nottingham compact car hire works best when the vehicle stays easy to place in city traffic but still comfortable enough once the route opens up. That is the balance we keep in view.",
+  serviceAreasDescription: "We support compact car hire in Nottingham and across nearby city and regional routes, including journeys around Nottingham station, NG2 and onward A52 or A60 travel.",
+  localRelevanceDescription: "Nottingham is exactly the sort of city where compact cars make everyday sense. Busy urban roads, station access, tighter parking and repeated short stops all favour a smaller vehicle that is easy to slot into the flow of the day.\n\nAt the same time, a Nottingham booking does not always stay local. Routes can widen quickly onto the A52, A60 and broader regional links, so the vehicle still needs to feel settled once the city-centre stage is over. Compact hatchbacks usually strike that balance well.",
+  localBlocks: [
+    { title: "Useful in busier city traffic", body: "Compact cars help take the pressure out of Nottingham city-centre driving because they are easier to position in traffic and easier to park when the day involves several short stops.\n\nThat can make a noticeable difference on ordinary bookings such as meetings, station access and replacement use." },
+    { title: "A practical fit for NG2, station and onward travel", body: "Nottingham bookings often mix urban pickups with wider journeys towards other parts of the county or beyond. Compact cars stay useful in both parts of that day.\n\nThey are small enough for the city element and still comfortable enough once the trip opens out." },
+    { title: "Easy to keep practical when plans change", body: "In a city like Nottingham, plans can change quickly between traffic, timing and destination updates. A compact hatchback gives you a practical base that stays easy to manage when that happens.\n\nIf the journey later calls for more room, the wider fleet is still available." },
+  ],
+  faqs: [
+    { question: "Why choose compact car hire in Nottingham?", answer: "Compact cars are well suited to Nottingham because they are easier in city traffic, simpler to park and still comfortable enough for wider regional mileage." },
+    { question: "Is compact car hire in Nottingham useful for station access?", answer: "Yes. Station collections and onward travel are a common reason customers choose a compact car in Nottingham." },
+    { question: "Do you offer automatic compact cars in Nottingham?", answer: "Yes, subject to availability. If you prefer an automatic for city driving or longer regional routes from Nottingham, ask when booking." },
+    { question: "Are compact hire cars suitable for business travel in Nottingham?", answer: "Yes. Compact cars work well for meetings, visits, local appointments and practical day-to-day business mileage around Nottingham." },
+    { question: "Can I use a compact hire car for longer trips from Nottingham?", answer: "Yes. Compact hatchbacks remain a sensible option when the route mixes Nottingham city driving with regional travel and you do not need a larger vehicle." },
+    { question: "What if I later need more space than a compact car?", answer: "Larger cars, vans, minibuses and trucks are also available if the Nottingham booking grows beyond a compact hatchback." },
+  ],
+})
+
+const location4Tokens = createNearbyLocationTokens({
+  location: "Grantham",
+  heroImage: "/images/compactcarhirenewark-co-uk-nearby-location-fleet-b.png",
+  heroAlt: "Compact hire car prepared for local and regional travel in Grantham",
+  metadataDescription: "Compact car hire in Grantham for station access, town driving and regional mileage using the A1 and A52.",
+  heroDescription: "Compact car hire in Grantham for everyday local travel, station access, business mileage and practical regional driving around the A1 and A52.",
+  serviceDescription: `Compact car hire in Grantham works well when the booking needs to stay easy in town but still comfortable enough for wider road use. A smaller vehicle helps with ordinary parking, station access and business stops, then remains practical once the route uses the A1 or A52.
+
+That balance suits a lot of Grantham travel, from work appointments and family visits through to replacement transport and short regional journeys where a larger car would simply be more vehicle than the day requires.`,
+  whyChooseDescription: "We keep Grantham compact car hire practical for everyday local driving first while still making sure the vehicle feels useful once the route widens beyond town.",
+  serviceAreasDescription: "We support compact car hire in Grantham and nearby Lincolnshire routes, including station access, town-centre travel and onward journeys using the A1 and A52.",
+  localRelevanceDescription: `Grantham is well suited to compact car hire because many bookings combine ordinary town movement with quick onward mileage. A smaller car feels more manageable in routine parking and station access, while still remaining comfortable once the trip heads onto the A1 or A52.
+
+That practicality makes compact hatchbacks a sensible option for mixed local and regional travel from Grantham. They stay easy to live with without making the wider road section feel compromised.`,
+  localBlocks: [
+    { title: "Useful for everyday Grantham driving", body: `Compact cars help take the pressure out of ordinary town-centre travel, station pickups and everyday parking in Grantham. For many customers, that simplicity is exactly what matters most.
+
+A smaller hatchback stays easy to live with throughout a normal working or personal day.` },
+    { title: "A practical fit for A1 and A52 mileage", body: `Grantham journeys do not always stay local. Routes using the A1 or A52 can quickly turn a town booking into wider regional travel.
+
+A compact car remains a sensible choice there because it balances easy local use with enough comfort for the larger-road part of the trip.` },
+    { title: "Good for replacement transport and business use", body: `Grantham customers often need a straightforward vehicle for local travel, work appointments or family visits while their own car is unavailable. Compact cars are strong in those situations because they stay practical and uncomplicated.
+
+If more room is needed later, the wider fleet remains available.` },
+  ],
+  faqs: [
+    { question: "Why choose compact car hire in Grantham?", answer: "Compact cars are a practical fit in Grantham because they are easy around town and station areas while still being comfortable enough for A1 and A52 mileage." },
+    { question: "Is compact car hire in Grantham useful for station access?", answer: "Yes. Compact cars are well suited to station pickups and onward travel because they keep local manoeuvring and parking easier." },
+    { question: "Do you offer automatic compact cars in Grantham?", answer: "Yes, subject to availability. If you prefer automatic driving for local Grantham use or wider road travel, ask when booking." },
+    { question: "Can I use a compact hire car for business trips in Grantham?", answer: "Yes. Compact cars are commonly used for meetings, visits and practical day-to-day professional mileage in and around Grantham." },
+    { question: "Can Grantham compact car hire also suit longer journeys?", answer: "Yes. Compact hatchbacks remain useful for mixed local and regional driving when you do not need a larger vehicle." },
+    { question: "What if I later need more space?", answer: "If the Grantham booking later needs more room, the wider fleet includes larger cars, vans, minibuses and trucks." },
+  ],
+})
+
+const location5Tokens = createNearbyLocationTokens({
+  location: "Retford",
+  heroImage: "/images/compactcarhirenewark-co-uk-nearby-location-fleet-a.png",
+  heroAlt: "Compact hire car prepared for everyday travel around Retford",
+  metadataDescription: "Compact car hire in Retford for station access, business travel and regional journeys using the A1 and A620 links.",
+  heroDescription: "Compact car hire in Retford for local driving, station pickups, business mileage and practical regional travel using the A1 and A620.",
+  serviceDescription: `Compact car hire in Retford is useful when the booking needs to stay easy around town while still being comfortable enough for wider road mileage. A smaller vehicle helps with routine parking, local movements and station access, then remains practical once the route uses the A620 or heads towards the A1.
+
+That makes compact cars a sensible fit for many Retford journeys, whether the booking is for everyday local use, replacement transport or a short-notice regional run.`,
+  whyChooseDescription: "Retford compact car hire should feel practical from the first local stop to the wider A1 or A620 mileage that often follows it, and that is the balance we keep in view.",
+  serviceAreasDescription: "We support compact car hire in Retford and nearby Nottinghamshire routes, including town-centre travel, station access and wider journeys using the A1 and A620.",
+  localRelevanceDescription: `Retford is well suited to compact car hire because many bookings combine local movement with quicker onward travel. A compact hatchback keeps ordinary town-centre use and station access simple while still being capable enough once the trip heads towards the A1 or along the A620.
+
+That practicality is one reason smaller cars work so well here. They suit everyday use without making the wider journey feel compromised.`,
+  localBlocks: [
+    { title: "Useful around Retford station and local roads", body: `Compact cars help take the pressure out of station collections, local appointments and everyday town-centre parking in Retford. For many customers, that simplicity is exactly what matters most.
+
+A smaller hatchback stays easy to live with throughout an ordinary working or personal day.` },
+    { title: "A practical fit for A1 and A620 mileage", body: `Retford bookings do not always stay local. Routes towards the A1 or across the A620 can quickly turn a short town booking into wider regional travel.
+
+A compact car remains a sensible choice there because it balances easy local use with enough comfort for the wider drive.` },
+    { title: "Good for replacement transport and business use", body: `Retford customers often need a straightforward vehicle for a few days of local travel, business appointments or family visits. Compact cars are strong in those situations because they stay practical and uncomplicated.
+
+If more room is needed later, the wider fleet remains available.` },
+  ],
+  faqs: [
+    { question: "Why choose compact car hire in Retford?", answer: "Compact cars are a practical fit in Retford because they are easy around town and station areas while still being comfortable enough for A1 and A620 mileage." },
+    { question: "Is compact car hire in Retford useful for station access?", answer: "Yes. Compact cars are well suited to station pickups and onward travel because they keep local manoeuvring and parking easier." },
+    { question: "Do you offer automatic compact cars in Retford?", answer: "Yes, subject to availability. If you prefer automatic driving for local Retford use or wider road travel, ask when booking." },
+    { question: "Can I use a compact hire car for business trips in Retford?", answer: "Yes. Compact cars are commonly used for meetings, visits and practical day-to-day professional mileage in and around Retford." },
+    { question: "Can Retford compact car hire also suit longer journeys?", answer: "Yes. Compact hatchbacks remain useful for mixed local and regional driving when you do not need a larger vehicle." },
+    { question: "What if I later need more space?", answer: "If the Retford booking later needs more room, the wider fleet includes larger cars, vans, minibuses and trucks." },
+  ],
+})
+
+const location6Tokens = createNearbyLocationTokens({
+  location: "Southwell",
+  heroImage: "/images/compactcarhirenewark-co-uk-nearby-location-fleet-b.png",
+  heroAlt: "Compact hire car ready for practical travel around Southwell",
+  metadataDescription: "Compact car hire in Southwell for local travel, Newark connections and everyday regional driving using the A612 and nearby A46 links.",
+  heroDescription: "Compact car hire in Southwell for everyday driving, town-centre trips, Newark connections and practical regional mileage when you want something easy to manage.",
+  serviceDescription: `Compact car hire in Southwell works well because the town often needs a vehicle that stays simple locally but still useful for regular travel in and out of Newark and the wider county. A smaller car is easy around local streets, ordinary parking and quick runs towards the A612, while still being comfortable enough for wider trips when the booking stretches further.
+
+That makes compact hatchbacks a sensible option for Southwell customers who want a clean, manageable self-drive car for everyday use, work appointments, family visits and short regional driving without stepping up to something larger than the journey really needs.`,
+  whyChooseDescription: "We keep Southwell compact car hire practical for the sort of everyday travel that mixes local roads, town-centre access and regular onward mileage towards Newark and nearby areas.",
+  serviceAreasDescription: "We support compact car hire in Southwell and nearby routes, including journeys around the Minster area, local Nottinghamshire roads and onward regional travel.",
+  localRelevanceDescription: `Southwell is a strong fit for compact car hire because so much everyday travel here is about keeping things easy rather than carrying extra bulk. A smaller car is useful for local streets, ordinary parking and practical access around town, while still being comfortable enough once the route heads wider.
+
+That balance helps on bookings that combine town movement with trips into Newark or around nearby parts of Nottinghamshire. Compact hatchbacks stay practical in both halves of the journey.`,
+  localBlocks: [
+    { title: "Useful around local roads and the town centre", body: `Compact cars are a sensible choice in Southwell when the journey includes ordinary local stops, routine parking and everyday movements around town. They stay easy to position and easier to live with throughout the day.
+
+That simplicity is often exactly what customers want from a local self-drive car.` },
+    { title: "A good fit for Southwell to Newark and wider travel", body: `Many Southwell trips combine town-centre movement with onward mileage towards Newark or wider nearby routes. A compact hatchback handles that shift well without feeling too large for the local part of the booking.
+
+It is a useful middle ground for mixed day-to-day travel.` },
+    { title: "Practical for work, visits and replacement use", body: `Southwell compact car hire often suits customers who need a manageable vehicle for appointments, family visits or a short replacement period while their own car is unavailable.
+
+If the trip later grows beyond that, the wider fleet is still available.` },
+  ],
+  faqs: [
+    { question: "Why choose compact car hire in Southwell?", answer: "Compact cars work well in Southwell because they are easy for local roads and town-centre parking while still comfortable enough for wider Nottinghamshire travel." },
+    { question: "Is compact car hire in Southwell useful for Newark connections?", answer: "Yes. Compact cars are a practical fit when the booking includes local Southwell driving with onward travel towards Newark and nearby routes." },
+    { question: "Do you offer automatic compact cars in Southwell?", answer: "Yes, subject to availability. If you prefer automatic driving for Southwell traffic or wider local mileage, ask when booking." },
+    { question: "Can I use a compact hire car for business travel in Southwell?", answer: "Yes. Compact cars are commonly used for work appointments, practical visits and everyday professional mileage in and around Southwell." },
+    { question: "Can Southwell compact car hire also suit longer trips?", answer: "Yes. Compact hatchbacks stay useful when the route mixes local Southwell driving with wider Nottinghamshire or regional travel." },
+    { question: "What if I later need more room?", answer: "If the Southwell booking later needs more space, the wider fleet includes larger cars, vans, minibuses and trucks." },
+  ],
+})
+
+const location7Tokens = createNearbyLocationTokens({
+  location: "Gainsborough",
+  heroImage: "/images/compactcarhirenewark-co-uk-nearby-location-fleet-a.png",
+  heroAlt: "Compact hire car ready for practical travel around Gainsborough",
+  metadataDescription: "Compact car hire in Gainsborough for town driving, station access and regional mileage using the A159 and A631 links.",
+  heroDescription: "Compact car hire in Gainsborough for everyday local travel, station access, business mileage and practical regional driving around the A159 and A631.",
+  serviceDescription: `Compact car hire in Gainsborough makes sense when the booking mixes local roads with wider routes beyond town. A smaller vehicle is easy to place around ordinary parking, station stops and retail visits, while still being comfortable enough for A159 or A631 mileage and the wider regional network.
+
+That practicality suits a lot of Gainsborough travel, from family visits and work appointments through to replacement transport and short-notice regional journeys. You get the convenience of a compact hatchback without giving up the comfort needed for the wider drive.`,
+  whyChooseDescription: "We keep Gainsborough compact car hire practical for everyday driving first, while still making sure the vehicle feels useful once the route stretches beyond town.",
+  serviceAreasDescription: "We support compact car hire in Gainsborough and nearby Lincolnshire routes, including everyday town travel and wider journeys using the A159 and A631.",
+  localRelevanceDescription: `Gainsborough is a good match for compact car hire because many journeys here blend ordinary local driving with quick access to wider routes. A smaller vehicle is easier in routine parking and short local stops, but it still remains comfortable enough when the trip widens beyond town.
+
+That balance matters on bookings that combine shopping, station access, family visits and regional travel in one day. Compact hatchbacks stay practical in both parts of the journey.`,
+  localBlocks: [
+    { title: "A sensible fit for everyday Gainsborough driving", body: `Compact cars are useful in Gainsborough because they keep local manoeuvring, short stops and everyday parking simpler. That is often the main thing customers want from a hire car.
+
+A smaller hatchback also tends to feel less cumbersome on routine town-centre movements than a larger vehicle.` },
+    { title: "Useful once the route opens onto the A159 or A631", body: `Gainsborough bookings often widen beyond local roads quite quickly. The A159 and A631 both make it easy for trips to move into longer regional mileage.
+
+A compact car gives you a sensible middle ground: easy enough for town use, but still useful once the route becomes faster and more open.` },
+    { title: "Good for mixed personal and business use", body: `Many Gainsborough customers want one vehicle that can cover errands, appointments, family visits and occasional work mileage without feeling like more car than they need.
+
+That is one of the clearest strengths of compact car hire in Gainsborough.` },
+  ],
+  faqs: [
+    { question: "Why choose compact car hire in Gainsborough?", answer: "Compact cars are a practical option in Gainsborough because they are easy for local driving and parking while still staying comfortable enough for A159 and A631 mileage." },
+    { question: "Is compact car hire in Gainsborough useful for station and town travel?", answer: "Yes. Compact cars are well suited to the kind of station access, retail stops and local appointments that make up many Gainsborough journeys." },
+    { question: "Do you offer automatic compact cars in Gainsborough?", answer: "Yes, subject to availability. If you prefer automatic driving for Gainsborough traffic or wider regional mileage, ask when booking." },
+    { question: "Can I use a compact car for business travel in Gainsborough?", answer: "Yes. Compact cars are commonly used for work appointments, visits and straightforward professional mileage in and around Gainsborough." },
+    { question: "Can Gainsborough compact car hire also suit longer trips?", answer: "Yes. Compact hatchbacks remain practical for mixed local and regional driving when you do not need extra carrying space." },
+    { question: "What if I later need more room than a compact car?", answer: "The wider fleet includes larger cars, vans, minibuses and trucks if the Gainsborough booking later needs more capacity." },
+  ],
+})
+
+const location8Tokens = createNearbyLocationTokens({
+  location: "Worksop",
+  heroImage: "/images/compactcarhirenewark-co-uk-nearby-location-fleet-b.png",
+  heroAlt: "Compact hire car ready for practical driving around Worksop",
+  metadataDescription: "Compact car hire in Worksop for town driving, station access and regional mileage using the A57, A60 and nearby motorway links.",
+  heroDescription: "Compact car hire in Worksop for everyday town travel, station trips, business mileage and practical regional driving around the A57 and A60.",
+  serviceDescription: `Compact car hire in Worksop makes sense when the booking mixes local roads with wider routes beyond town. A smaller vehicle is easy to place around ordinary parking and shopping stops, while still being comfortable enough for A57 or A60 mileage and the wider regional network.
+
+That practicality suits a lot of Worksop travel, from family visits and work appointments through to replacement transport and short notice regional journeys. You get the convenience of a compact hatchback without giving up the comfort needed for the wider drive.`,
+  whyChooseDescription: "We keep Worksop compact car hire practical for everyday driving first, while still making sure the vehicle feels useful once the route stretches beyond town.",
+  serviceAreasDescription: "We support compact car hire in Worksop and nearby Nottinghamshire and South Yorkshire routes, including everyday town travel and wider journeys using the A57 and A60.",
+  localRelevanceDescription: `Worksop is a good match for compact car hire because many journeys here blend ordinary local driving with quick access to wider routes. A smaller vehicle is easier in routine parking and short local stops, but it still remains comfortable enough when the trip widens beyond town.
+
+That balance matters on bookings that combine shopping, station access, family visits and regional travel in one day. Compact hatchbacks stay practical in both parts of the journey.`,
+  localBlocks: [
+    { title: "A sensible fit for everyday Worksop driving", body: `Compact cars are useful in Worksop because they keep local manoeuvring, short stops and everyday parking simpler. That is often the main thing customers want from a hire car.
+
+A smaller hatchback also tends to feel less cumbersome on routine town-centre movements than a larger vehicle.` },
+    { title: "Useful once the route opens onto the A57 or A60", body: `Worksop bookings often widen beyond local roads quite quickly. The A57 and A60 both make it easy for trips to move into longer regional mileage.
+
+A compact car gives you a sensible middle ground: easy enough for town use, but still useful once the route becomes faster and more open.` },
+    { title: "Good for mixed personal and business use", body: `Many Worksop customers want one vehicle that can cover errands, appointments, family visits and occasional work mileage without feeling like more car than they need.
+
+That is one of the clearest strengths of compact car hire in Worksop.` },
+  ],
+  faqs: [
+    { question: "Why choose compact car hire in Worksop?", answer: "Compact cars are a practical option in Worksop because they are easy for local driving and parking while still staying comfortable enough for A57 and A60 mileage." },
+    { question: "Is compact car hire in Worksop useful for station and town travel?", answer: "Yes. Compact cars are well suited to the kind of station access, retail stops and local appointments that make up many Worksop journeys." },
+    { question: "Do you offer automatic compact cars in Worksop?", answer: "Yes, subject to availability. If you prefer automatic driving for Worksop traffic or wider regional mileage, ask when booking." },
+    { question: "Can I use a compact car for business travel in Worksop?", answer: "Yes. Compact cars are commonly used for work appointments, visits and straightforward professional mileage in and around Worksop." },
+    { question: "Can Worksop compact car hire also suit longer trips?", answer: "Yes. Compact hatchbacks remain practical for mixed local and regional driving when you do not need extra carrying space." },
+    { question: "What if I later need more room than a compact car?", answer: "The wider fleet includes larger cars, vans, minibuses and trucks if the Worksop booking later needs more capacity." },
+  ],
+})
 
 export const servicePages: Record<ServiceSlug, ServicePageContent> = {
   "compact-car": createContentSet({
